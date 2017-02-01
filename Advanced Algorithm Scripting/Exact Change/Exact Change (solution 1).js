@@ -13,24 +13,23 @@ function checkCashRegister(price, cash, cid) {
     var total = function(array) {
         if (array.length === 0) return 0;
         var result = 0;
-        for (var i = 0; i < array.length; i++) {
-            result += array[i][1] * 100 /* to avoid decimal problem */;
+        for (element in array) {
+            result += array[element][1] * 100 /* to avoid decimal problem */;
         }
     return result / 100 /* to avoid decimal problem */;
     };
 
     var totalChange = cash - price;
-    var totalCID = total(cid);
     var change = [];
 
-    if (totalCID === totalChange)
+    if (total(cid) === totalChange)
         return "Closed";
 
     for (var i = cid.length-1; i >= 0; i--) {
         var calcChange = (totalChange * 100 - total(change) * 100) / 100 /* to avoid decimal problem */;
         var bill = bills[cid[i][0]];
         var numOfBills = Math.floor(calcChange / bills[cid[i][0]]);
-        if (numOfBills > 0 && cid[i][1] > 0) {
+        if (numOfBills && cid[i][1]) {
             if (cid[i][1] > numOfBills * bill)
                 change.push([cid[i][0], (Math.floor(calcChange / bill) * bill)]);
             else
@@ -43,7 +42,7 @@ function checkCashRegister(price, cash, cid) {
     else if (total(change) < totalChange)
         return "Insufficient Funds";
     else
-        return "ERROR";
+        console.log("ERROR");
 }
 
 // Example cash-in-drawer array:
@@ -80,7 +79,6 @@ if (checkCashRegister(19.50, 20.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME",
     console.log("test 4 ... OK");
 else
     console.log("test 4 ... FAILED");
-
 
 // test 5
 var test5 = [["TWENTY", 60.00], ["TEN", 20.00], ["FIVE", 15.00], ["ONE", 1.00], ["QUARTER", 0.50], ["DIME", 0.20], ["PENNY", 0.04]];
