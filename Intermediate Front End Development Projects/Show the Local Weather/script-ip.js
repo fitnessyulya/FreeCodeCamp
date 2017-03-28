@@ -1,5 +1,9 @@
+"use strict";
 
-var latitude, longitude;
+var userCoords = {
+    latitude: 0,
+    longitude: 0
+}
 
 // geoinformation by IP was taken from here:
 // http://stackoverflow.com/a/35123097
@@ -34,14 +38,14 @@ function makeRequest (method, url) {
 
 function getCoordinates(response) {
     let ipData = JSON.parse(response);
-    latitude = ipData.geobyteslatitude;
-    longitude = ipData.geobyteslongitude;
-    console.log(latitude + " " + longitude);
+    userCoords.latitude = ipData.geobyteslatitude;
+    userCoords.longitude = ipData.geobyteslongitude;
+    console.log(userCoords.latitude + " " + userCoords.longitude);
 }
 
 function setWeatherAPILink() {
-    console.log(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=82c9ee7accb1cba5836ff0d43572cf35`);
-    return `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=82c9ee7accb1cba5836ff0d43572cf35`
+    console.log(`http://api.openweathermap.org/data/2.5/weather?lat=${userCoords.latitude}&lon=${userCoords.longitude}&APPID=82c9ee7accb1cba5836ff0d43572cf35`);
+    return `http://api.openweathermap.org/data/2.5/weather?lat=${userCoords.latitude}&lon=${userCoords.longitude}&APPID=82c9ee7accb1cba5836ff0d43572cf35`
 }
 
 makeRequest('GET', ipDataService)
