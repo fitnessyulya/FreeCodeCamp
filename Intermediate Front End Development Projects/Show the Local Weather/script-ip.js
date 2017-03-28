@@ -32,21 +32,24 @@ function makeRequest (method, url) {
     });
 }
 
-// function getCoordinates(ipData) {
-//     latitude = ipData.geobyteslatitude;
-//     longitude = ipData.geobyteslongitude;
-// }
-
-// Example:
-
-makeRequest('GET', ipDataService)
-.then(function(response) {
-    console.log(JSON.parse(response));
+function getCoordinates(response) {
     let ipData = JSON.parse(response);
     latitude = ipData.geobyteslatitude;
     longitude = ipData.geobyteslongitude;
     console.log(latitude + " " + longitude);
-})
+}
+
+// Example:
+
+makeRequest('GET', ipDataService)
+.then((response) => getCoordinates(response))
+// .then(function(response) {
+//     console.log(JSON.parse(response));
+//     let ipData = JSON.parse(response);
+//     latitude = ipData.geobyteslatitude;
+//     longitude = ipData.geobyteslongitude;
+//     console.log(latitude + " " + longitude);
+// })
 .catch(function (err) {
     console.error('Augh, there was an error!', err.statusText);
 });
