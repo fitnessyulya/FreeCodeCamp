@@ -44,13 +44,21 @@ function getCoordinates(response) {
 }
 
 function setWeatherAPILink() {
-    console.log(`http://api.openweathermap.org/data/2.5/weather?lat=${userCoords.latitude}&lon=${userCoords.longitude}&APPID=82c9ee7accb1cba5836ff0d43572cf35`);
-    return `http://api.openweathermap.org/data/2.5/weather?lat=${userCoords.latitude}&lon=${userCoords.longitude}&APPID=82c9ee7accb1cba5836ff0d43572cf35`
+    console.log(`http://api.openweathermap.org/data/2.5/weather?lat=`
+        + `${userCoords.latitude}`
+        + `&lon=`
+        + `${userCoords.longitude}`
+        + `&APPID=82c9ee7accb1cba5836ff0d43572cf35`);
+    return `http://api.openweathermap.org/data/2.5/weather?lat=`
+        + `${userCoords.latitude}`
+        + `&lon=`
+        + `${userCoords.longitude}`
+        + `&APPID=82c9ee7accb1cba5836ff0d43572cf35`;
 }
 
 makeRequest('GET', ipDataService)
-.then((response) => getCoordinates(response))
-.then((response) => setWeatherAPILink(response))
-.catch(function (err) {
+    .then((response) => getCoordinates(response))
+    .then((response) => setWeatherAPILink(response))
+    .catch(function (err) {
     console.error('Augh, there was an error!', err.statusText);
 });
