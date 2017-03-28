@@ -59,6 +59,8 @@ function setWeatherAPILink() {
 makeRequest('GET', ipDataService)
     .then((response) => getCoordinates(response))
     .then((response) => setWeatherAPILink(response))
+    .then((weatherAPILink) => makeRequest('GET', weatherAPILink))
+    .then((response) => console.log(JSON.parse(response)))
     .catch(function (err) {
     console.error('Augh, there was an error!', err.statusText);
 });
