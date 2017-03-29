@@ -3,7 +3,14 @@
 var userLocation = {
     latitude: 0,
     longitude: 0,
-    cityCountry: "",
+    cityCountry: "loading...",
+}
+
+var userWeather = {
+    temperature: "loading...",
+    units: "metric",
+    icon: "loading...",
+    description: "loading..."
 }
 
 // geoinformation by IP was taken from here:
@@ -60,14 +67,26 @@ function setWeatherAPILink() {
         + `${userLocation.latitude}`
         + `&lon=`
         + `${userLocation.longitude}`
+        // + `&units=metric`
         + `&APPID=82c9ee7accb1cba5836ff0d43572cf35`;
 }
 
-makeRequest('GET', ipDataService)
+function getUserWeather(weatherData) {
+    let weatherDatatJSON = JSON.parse(weatherData);
+    userWeather.temperature = weatherDatatJSON.main.temp;
+    console.log(userWeather.temperature);
+    userWeather.icon = weatherDatatJSON.weather[0].icon;
+    console.log(userWeather.icon);
+    userWeather.description = weatherDatatJSON.weather[0].description;
+    console.log(userWeather.description);
+}
+
+
+var getWeather = makeRequest('GET', ipDataService)
     .then((response) => getCoordinates(response))
     .then((response) => setWeatherAPILink(response))
     .then((weatherAPILink) => makeRequest('GET', weatherAPILink))
-    .then((weatherData) => console.log(JSON.parse(weatherData)))
+    .then((weatherData) => getUserWeather(weatherData))
     .catch(function (err) {
-    console.error('Augh, there was an error!', err.statusText);
+        console.error('Augh, there was an error!', err.statusText);
 });
