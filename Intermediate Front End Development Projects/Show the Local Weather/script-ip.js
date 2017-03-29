@@ -81,12 +81,23 @@ function getUserWeather(weatherData) {
     console.log(userWeather.description);
 }
 
+function updateUI() {
+    document.getElementById("cityCountry").innerHTML = userLocation.cityCountry;
+    document.getElementById("temperature").innerHTML = userWeather.temperature;
+    document.getElementById("weatherIcon").innerHTML = `<img `
+    + `src="`
+    + `http://openweathermap.org/img/w/`
+    + `${userWeather.icon}`
+    + `.png">`;
+    document.getElementById("weatherDescription").textContent = userWeather.description;
+}
 
 var getWeather = makeRequest('GET', ipDataService)
     .then((response) => getCoordinates(response))
     .then((response) => setWeatherAPILink(response))
     .then((weatherAPILink) => makeRequest('GET', weatherAPILink))
     .then((weatherData) => getUserWeather(weatherData))
+    .then(() => updateUI())
     .catch(function (err) {
         console.error('Augh, there was an error!', err.statusText);
 });
