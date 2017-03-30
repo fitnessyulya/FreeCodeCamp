@@ -3,14 +3,15 @@
 var userLocation = {
     latitude: 0,
     longitude: 0,
-    cityCountry: "loading...",
+    cityCountry: "",
 }
 
 var userWeather = {
-    temperature: "loading...",
+    tempMetric: "",
+    tempImperial: "",
     units: "metric",
-    icon: "loading...",
-    description: "loading..."
+    icon: "",
+    description: ""
 }
 
 // geoinformation by IP was taken from here:
@@ -67,14 +68,14 @@ function setWeatherAPILink() {
         + `${userLocation.latitude}`
         + `&lon=`
         + `${userLocation.longitude}`
-        // + `&units=metric`
+        + `&units=${userWeather.units}`
         + `&APPID=82c9ee7accb1cba5836ff0d43572cf35`;
 }
 
 function getUserWeather(weatherData) {
     let weatherDatatJSON = JSON.parse(weatherData);
-    userWeather.temperature = weatherDatatJSON.main.temp;
-    console.log(userWeather.temperature);
+    userWeather.tempMetric = weatherDatatJSON.main.temp;
+    console.log(userWeather.tempMetric);
     userWeather.icon = weatherDatatJSON.weather[0].icon;
     console.log(userWeather.icon);
     userWeather.description = weatherDatatJSON.weather[0].description;
@@ -83,7 +84,7 @@ function getUserWeather(weatherData) {
 
 function updateUI() {
     document.getElementById("cityCountry").innerHTML = userLocation.cityCountry;
-    document.getElementById("temperature").innerHTML = userWeather.temperature;
+    document.getElementById("temperature").innerHTML = Math.round(userWeather.tempMetric);
     document.getElementById("weatherIcon").innerHTML = `<img `
     + `src="`
     + `http://openweathermap.org/img/w/`
@@ -92,12 +93,32 @@ function updateUI() {
     document.getElementById("weatherDescription").textContent = userWeather.description;
 }
 
+function cToF(temp) {
+    userWeather.tempImperial = temp * (9/5) + 32;
+}
+
 var getWeather = makeRequest('GET', ipDataService)
     .then((response) => getCoordinates(response))
     .then((response) => setWeatherAPILink(response))
     .then((weatherAPILink) => makeRequest('GET', weatherAPILink))
     .then((weatherData) => getUserWeather(weatherData))
     .then(() => updateUI())
+    .then(() => cToF(userWeather.tempMetric))
     .catch(function (err) {
         console.error('Augh, there was an error!', err.statusText);
 });
+
+
+var temp = document.getElementById("temperature");
+
+temp.onclick = function () {
+    console.log("Change units");
+    if (userWeather.units === "metric") {
+        userWeather.units = "imperial";
+        document.getElementById("temperature").innerHTML = Math.round(userWeather.tempImperial);
+    } else {
+        userWeather.units = "metric";
+        document.getElementById("temperature").innerHTML = Math.round(userWeather.tempMetric);
+    }
+};
+
