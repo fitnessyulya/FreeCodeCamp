@@ -3,14 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Show the Local Weather</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!-- <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-    <div id="cityCountry">Getting weather...</div>
-    <div id="temperature"></div>
-    <div id="weatherIcon"></div>
-    <p id="weatherDescription"></p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 text-center">
+            <div class="display-4" id="cityCountry">Getting weather...</div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="col-md-2" id="temperature"></div>
+            <div class="col-md-2" id="weatherIcon"></div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <p id="weatherDescription"></p>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
 
     <p><button onclick="geoFindMe()">Show my location</button></p>
     <div id="out"></div>
