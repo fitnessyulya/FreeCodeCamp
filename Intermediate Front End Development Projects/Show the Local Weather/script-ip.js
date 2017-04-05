@@ -8,7 +8,9 @@ var userLocation = {
 
 var userWeather = {
     tempMetric: "",
+    tempMetricSymb: "ºC",
     tempImperial: "",
+    tempImperialSymb: "ºF",
     units: "metric",
     icon: "",
     description: ""
@@ -84,12 +86,11 @@ function getUserWeather(weatherData) {
 
 function updateUI() {
     document.getElementById("cityCountry").innerHTML = userLocation.cityCountry;
-    document.getElementById("temperature").innerHTML = Math.round(userWeather.tempMetric);
-    document.getElementById("weatherIcon").innerHTML = `<img `
-    + `src="`
-    + `http://openweathermap.org/img/w/`
+    document.getElementById("temperature").textContent = Math.round(userWeather.tempMetric);
+    document.getElementById("testParag").textContent = userWeather.tempMetricSymb;
+    document.getElementById("weatherIcon").src = `http://openweathermap.org/img/w/`
     + `${userWeather.icon}`
-    + `.png">`;
+    + `.png`;
     document.getElementById("weatherDescription").textContent = userWeather.description;
 }
 
@@ -121,4 +122,8 @@ temp.onclick = function () {
         document.getElementById("temperature").innerHTML = Math.round(userWeather.tempMetric);
     }
 };
+
+
+var testParag = document.getElementById("testParag");
+console.log(testParag + " testParag");
 
