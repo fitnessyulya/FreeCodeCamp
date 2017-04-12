@@ -1,70 +1,102 @@
-function geoFindMe() {
-  var output = document.getElementById("out");
+'use strict';
 
-  if (!navigator.geolocation){
-    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-    return;
-  }
+var userLocation = {
+    zipCode: '',
+    city: '',
+    regionCode: '',
+    countryName: '',
+    countryCode: '',
+    get zip() { return this.zipCode; },
+    set zip(value) { this.zipCode = value }
+};
 
-  function success(position) {
-    var latitude  = position.coords.latitude;
-    var longitude = position.coords.longitude;
+var userWeather = {
+    tempMetric: "",
+    tempMetricSymb: "ºC",
+    tempImperial: "",
+    tempImperialSymb: "ºF",
+    units: "metric",
+    icon: "",
+    description: ""
+};
 
-    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+// geoinformation by IP was taken from here:
+// http://stackoverflow.com/a/35123097
 
-    var img = new Image();
-    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+var ipDataService = "http://freegeoip.net/json/?callback=?";
 
-    output.appendChild(img);
-  }
+function makeRequest(url) {
+    return new Promise(function (resolve, reject) {
+        $.getJSON(url, function (data) {
+            if (data) {
+                resolve(data);
+            } else {
+                reject(`Couldn't get JSON data from ${ipDataService}`);
+            }
+        });
+    });
+}
 
-  function error() {
-    output.innerHTML = "Unable to retrieve your location";
-  }
-
-  output.innerHTML = "<p>Locating…</p>";
-
-  navigator.geolocation.getCurrentPosition(success, error);
-
-
-//////////////////////
-  // function loadJSON(callback) {   
-  //   var xobj = new XMLHttpRequest();
-  //       xobj.overrideMimeType("application/json");
-  //   xobj.open('GET', 'https://github.com/gatezh/FreeCodeCamp/blob/master/Intermediate%20Front%20End%20Development%20Projects/Build%20a%20Random%20Quote%20Machine/myQuotes.json', false); // Replace 'my_data' with the path to your file
-  //   xobj.onreadystatechange = function () {
-  //         if (xobj.readyState == 4 && xobj.status === 200) {
-  //           // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-  //           callback(xobj.responseText);
-  //         }
-  //   };
-  //   xobj.send(null);
-  // }
-
-  // function init() {
-  //   loadJSON(function(response) {
-  //     // Parse JSON string into object
-  //     console.log(response);
-  //     var actual_JSON = JSON.parse(response);
-  //   });
-  // }
-
-  // init();
-
-
-  var file = 'https://github.com/gatezh/FreeCodeCamp/blob/master/Intermediate%20Front%20End%20Development%20Projects/Build%20a%20Random%20Quote%20Machine/myQuotes.json';
-
-  function XHR(file, callback){
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-        if(xhr.readyState === 4 && xhr.status === 200){
-            callback(xhr.responseText);
-        }
+function getLocationParams(response) {
+    if (!userLocation.zip) {
+        userLocation.zip = response.zip_code;
+        userLocation.city = response.city;
+        userLocation.regionCode = response.region_code;
+        userLocation.countryCode = response.country_code;
+        userLocation.countryName = response.country_name;
+    } else {
+        userLocation.zip = userInput;
     }
-    xhr.open('GET', file, true);
-    xhr.send();
-  }
+}
 
-  console.log( XHR(file) );
+function setWeatherAPILink() {
+    return `http://api.openweathermap.org/data/2.5/weather?zip=`
+        + `${userLocation.zip},`
+        + `${userLocation.countryCode}`
+        + `&units=${userWeather.units}`
+        + `&APPID=ad25adff4b6456370b112d0fcf61b2ed`;
+}
 
+function getUserWeather(weatherData) {
+    userWeather.tempMetric = weatherData.main.temp;
+    userWeather.icon = weatherData.weather[0].icon;
+    userWeather.description = weatherData.weather[0].description;
+}
+
+function updateUI() {
+    document.getElementById("cityCountry").innerHTML = userLocation.city;
+    document.getElementById("temperature").textContent = Math.round(userWeather.tempMetric);
+    document.getElementById("tempUnits").textContent = userWeather.tempMetricSymb;
+    document.getElementById("weatherIcon").src = `http://openweathermap.org/img/w/`
+    + `${userWeather.icon}`
+    + `.png`;
+    document.getElementById("weatherDescription").textContent = userWeather.description;
+}
+
+function cToF(temp) {
+    userWeather.tempImperial = temp * (9/5) + 32;
+}
+
+makeRequest(ipDataService)
+    .then(response => getLocationParams(response))
+    .then((response) => setWeatherAPILink(response))
+    .then((weatherAPILink) => makeRequest(weatherAPILink))
+    .then((weatherData) => getUserWeather(weatherData))
+    .then(() => updateUI())
+    .then(() => cToF(userWeather.tempMetric))
+    .catch(function (err) {
+        'use strict';
+        console.error('Augh, there was an error!', err.statusText);
+    });
+
+function changeTempUnits() {
+    if (userWeather.units === "metric") {
+        userWeather.units = "imperial";
+        document.getElementById("temperature").textContent = Math.round(userWeather.tempImperial);
+        document.getElementById("tempUnits").textContent = userWeather.tempImperialSymb;
+    } else {
+        userWeather.units = "metric";
+        document.getElementById("temperature").textContent = Math.round(userWeather.tempMetric);
+        document.getElementById("tempUnits").textContent = userWeather.tempMetricSymb;
+    }
 }
