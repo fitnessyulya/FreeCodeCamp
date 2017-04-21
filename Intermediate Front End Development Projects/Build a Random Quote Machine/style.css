@@ -1,0 +1,80 @@
+html, body, .container-fluid {
+    height: 100%;
+}
+
+body {
+    background: #bdc3c7;
+}
+
+.container-fluid {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+article {
+    position: relative;
+    width: 400px;
+    height: 260px;
+    border-radius: 5px;
+    background: white;
+    padding: 0 15px;
+}
+
+.quote-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-top: -25px;
+}
+
+.quote-body span {
+    font-size: 21px;
+}
+
+.quote-body span:before,
+.quote-body span:after {
+    content: '"';
+    font-family: Arial;
+}
+
+.quote-author {
+    display: flex;
+    justify-content: flex-end;
+    font-style: italic;
+    font-size: 15px;
+}
+
+#tweet-quote {
+    position: absolute;
+    left: 10px;
+    bottom: 0px;
+    font-size: 25px;
+}
+
+/* .share-twitter {
+    position: absolute;
+    left: 25px;
+    bottom: 10px;
+} */
+
+article button {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    border: none;
+    /*box-shadow: 1px 1px 5px #000;*/
+}
+
+article button:hover {
+    cursor: pointer;
+}
