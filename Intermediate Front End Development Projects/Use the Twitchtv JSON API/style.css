@@ -1,0 +1,36 @@
+body {
+    margin: 50px 0 80px 0; }
+
+a:hover {
+    text-decoration: none; }
+
+.channel {
+    height: 55px;
+    margin: 5px 0 5px;
+    border: 1px dashed #000;
+    overflow: hidden; }
+
+.channel img {
+    height: 100%;
+    float: left;
+    margin-right: 7px; }
+
+.channel h6 {
+    margin: 4px 0;
+    color: #FFF; }
+
+.channel span {
+    color: #616161;
+    font: italic 1em sans-serif; }
+
+.online {
+    background: #5CB85C; }
+
+.offline {
+    background: #F0AD4E; }
+
+.not-exist {
+    background-color: grey;}
+
+.hidden {
+    display: none; }
