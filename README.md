@@ -20,4 +20,4 @@
 
 (click the image for demo)
 
-[![Wikipedia Viewer](https://github.com/gatezh/FreeCodeCamp/blob/master/images/Wikipedia%20Viewer.png?raw=true)](https://cdn.rawgit.com/gatezh/FreeCodeCamp/ae9756e4/Intermediate%20Front%20End%20Development%20Projects/Build%20a%20Wikipedia%20Viewer/index.html)
+[![Wikipedia Viewer](https://github.com/gatezh/FreeCodeCamp/blob/master/images/Wikipedia%20Viewer%20682x192.png?raw=true)](https://cdn.rawgit.com/gatezh/FreeCodeCamp/ae9756e4/Intermediate%20Front%20End%20Development%20Projects/Build%20a%20Wikipedia%20Viewer/index.html)
