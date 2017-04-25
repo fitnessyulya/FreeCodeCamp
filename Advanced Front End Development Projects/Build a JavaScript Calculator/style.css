@@ -1,2 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; }
+
 body {
+    margin-top: 3%;
     background: green; }
+
+.main {
+    margin: 0 auto;
+    min-width: 320px;
+    max-width: 414px;
+    border: 1px solid #000; }
+
+.display {
+    padding: 20px 15px 0px;
+    text-align: right;
+    background: #000;
+    color: #fff;
+    line-height: 3em }
