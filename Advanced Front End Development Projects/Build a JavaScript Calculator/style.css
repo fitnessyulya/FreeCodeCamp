@@ -7,10 +7,14 @@ body {
     margin-top: 3%;
     background: green; }
 
+ul li {
+    list-style: none;
+    display: inline-block; }
+
 .main {
     margin: 0 auto;
-    min-width: 320px;
-    max-width: 414px;
+/*    min-width: 320px;*/
+    max-width: 320px;
     border: 1px solid #000; }
 
 .display {
@@ -19,3 +23,43 @@ body {
     background: #000;
     color: #fff;
     line-height: 3em }
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    /*height: calc(50vmin - 10px);*/
+/*    grid-column-gap: 0px;
+    grid-row-gap: 5px;*/
+/*    justify-items: stretch;
+    align-items: stretch;*/
+/*    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 20% 20% 20% 20% 20%;*/
+}
+
+.button {
+    grid-column: span 1;
+    border: 1px dashed #000;
+    color: #000;
+    font: 300 1.3em sans-serif;
+    background: #fff;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+
+.button span {
+    grid-area: 2 / 2;
+    text-align: center;
+}
+
+.button-lg {
+    grid-column: span 2;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(6, 1fr);
+}
+
+.button-lg span {
+    grid-area: 2 / 2;
+}
+
+
