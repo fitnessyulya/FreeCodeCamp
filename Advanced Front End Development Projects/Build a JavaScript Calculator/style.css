@@ -13,12 +13,11 @@ ul li {
 
 .main {
     margin: 0 auto;
-/*    min-width: 320px;*/
     max-width: 320px;
-    border: 1px solid #000; }
+    border: 2px solid #000; }
 
 .display {
-    padding: 20px 15px 0px;
+    padding: 70px 15px 0px;
     text-align: right;
     background: #000;
     color: #fff;
@@ -27,39 +26,34 @@ ul li {
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    /*height: calc(50vmin - 10px);*/
-/*    grid-column-gap: 0px;
-    grid-row-gap: 5px;*/
-/*    justify-items: stretch;
-    align-items: stretch;*/
-/*    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 20% 20% 20% 20% 20%;*/
-}
+    grid-template-rows: repeat(5, 1fr); }
 
 .button {
     grid-column: span 1;
-    border: 1px dashed #000;
-    color: #000;
+    border: 0.5px solid #A69988;
+    color: #12100F;
     font: 300 1.3em sans-serif;
-    background: #fff;
+    background-color: #CBBEA9;
     display: grid;
-    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-}
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr); }
 
 .button span {
     grid-area: 2 / 2;
-    text-align: center;
-}
+    text-align: center; }
 
 .button-lg {
     grid-column: span 2;
     display: grid;
-    grid-template: repeat(3, 1fr) / repeat(6, 1fr);
-}
+    grid-template: repeat(3, 1fr) / repeat(6, 1fr); }
 
 .button-lg span {
-    grid-area: 2 / 2;
-}
+    grid-area: 2 / 2; }
 
+.operator {
+    color: #fff;
+    background-color: #F57726; }
+
+.top {
+    color: #2B2723;
+    background-color: #C1B29D; }
 
