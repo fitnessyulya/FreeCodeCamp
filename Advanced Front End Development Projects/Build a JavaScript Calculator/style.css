@@ -17,11 +17,11 @@ ul li {
     border: 2px solid #000; }
 
 .display {
-    padding: 70px 15px 0px;
+    padding: 50px 15px 0px;
     text-align: right;
     background: #000;
     color: #fff;
-    line-height: 3em }
+    font: 300 3em/2em sans-serif; }
 
 .buttons {
     display: grid;
@@ -36,6 +36,12 @@ ul li {
     background-color: #CBBEA9;
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr); }
+
+.button:hover {
+    cursor: pointer; }
+
+.button:active {
+    background-color: #B6A896; }
 
 .button span {
     grid-area: 2 / 2;
@@ -52,6 +58,9 @@ ul li {
 .operator {
     color: #fff;
     background-color: #F57726; }
+
+.operator:active {
+    background-color: #DF6C20; }
 
 .top {
     color: #2B2723;
