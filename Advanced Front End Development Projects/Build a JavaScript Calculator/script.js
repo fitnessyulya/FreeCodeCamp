@@ -14,11 +14,14 @@ function changeLastInput (key) {
     if (key === "." && !/\./.test(lastInput().val)) {
         console.log("if 1");
         input[input.length-1] += key;
-    } else if (key === "." && /\./.test(lastInput().val)) {
-    } else if (lastInput().val === "0") {
+    }
+    else if (key === "." && /\./.test(lastInput().val)) {
+    }
+    else if (lastInput().val === "0") {
         console.log("if 2");
         input[input.length-1] = key;
-    } else if (/^\d+\.?\d*$/.test(lastInput().val)) {
+    }
+    else if (/^\d+\.?\d*$/.test(lastInput().val)) {
         console.log("if 3");
         input[input.length-1] += key.toString();
     }
@@ -37,6 +40,10 @@ function insertOperator(key) {
         console.log(`last input is ${input[lastInput.indx]}`);
     }
     console.log(`input after insertOperator is ${input}`);
+}
+
+function nextInput(key) {
+    (key == ".") ? input.push("0.") : input.push(key);
 }
 
 function allClear () {
@@ -61,6 +68,9 @@ function buttonClick(key) {
 
         if (reNum.test(lastInput().val)) {
             changeLastInput(key);
+        } 
+        else {
+            nextInput(key);
         }
     }
 
