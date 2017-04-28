@@ -1,6 +1,7 @@
 
 var display = document.getElementsByClassName("display")[0];
 var input = ["0"];
+var result = "";
 var reOperator = /[\/\*\-\+]/;
 var reNum = /\d/;
 
@@ -11,6 +12,7 @@ function lastInput () {
 }
 
 function changeLastInput (key) {
+    (result) ? allClear() : "" ;
     if (key === "." && !/\./.test(lastInput().val)) {
         console.log("if 1");
         input[input.length-1] += key;
@@ -43,6 +45,7 @@ function insertOperator (key) {
 }
 
 function nextInput (key) {
+    // (result) ? allClear() : "" ;
     (key == ".") ? input.push("0.") : input.push(key);
 }
 
@@ -50,16 +53,20 @@ function calculate () {
     (reOperator.test(lastInput().val)) ? input.pop() : "" ;
     var inputString = input.reduce((acc, cur) => `${acc} ${cur}`);
     console.log(`inputString is ${inputString}`);
-    var result = ( new Function("return " + inputString) )();
+    result = ( new Function("return " + inputString) )().toString();
     console.log(`result is ${result}`);
 }
 
 function allClear () {
     input = ["0"];
+    result = "";
 }
 
 function displayInput () {
-    if (reNum.test(lastInput().val)) {
+    if (result) {
+        display.innerHTML = result;
+    }
+    else if (reNum.test(lastInput().val)) {
         display.innerHTML = lastInput().val;
     }
 }
