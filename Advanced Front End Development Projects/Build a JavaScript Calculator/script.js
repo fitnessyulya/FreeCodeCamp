@@ -30,6 +30,12 @@ function changeLastInput (key) {
 }
 
 function insertOperator (key) {
+    if (result) {
+        input.splice(0, input.length, result);
+        result = "";
+        console.log(`input after splice is ${input}`);
+    }
+
     if (reNum.test(lastInput().val)) {
         input.push(key);
         console.log(`pushed ${key}`);
@@ -45,7 +51,6 @@ function insertOperator (key) {
 }
 
 function nextInput (key) {
-    // (result) ? allClear() : "" ;
     (key == ".") ? input.push("0.") : input.push(key);
 }
 
@@ -100,4 +105,5 @@ function buttonClick (key) {
 
     console.log(input);
     displayInput();
+    console.log("after display run");
 }
