@@ -27,7 +27,7 @@ function changeLastInput (key) {
     }
 }
 
-function insertOperator(key) {
+function insertOperator (key) {
     if (reNum.test(lastInput().val)) {
         input.push(key);
         console.log(`pushed ${key}`);
@@ -42,8 +42,16 @@ function insertOperator(key) {
     console.log(`input after insertOperator is ${input}`);
 }
 
-function nextInput(key) {
+function nextInput (key) {
     (key == ".") ? input.push("0.") : input.push(key);
+}
+
+function calculate () {
+    (reOperator.test(lastInput().val)) ? input.pop() : "" ;
+    var inputString = input.reduce((acc, cur) => `${acc} ${cur}`);
+    console.log(`inputString is ${inputString}`);
+    var result = ( new Function("return " + inputString) )();
+    console.log(`result is ${result}`);
 }
 
 function allClear () {
@@ -56,7 +64,7 @@ function displayInput () {
     }
 }
 
-function buttonClick(key) {
+function buttonClick (key) {
     console.log(key);
 
     if (key == "AC") {
@@ -77,6 +85,12 @@ function buttonClick(key) {
     else if (reOperator.test(key)) {
         insertOperator(key);
     }
+
+    else if (key == "=") {
+        console.log("about to calculate");
+        calculate();
+    }
+
     console.log(input);
     displayInput();
 }
