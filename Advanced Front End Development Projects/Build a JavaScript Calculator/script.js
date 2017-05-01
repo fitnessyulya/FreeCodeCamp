@@ -31,6 +31,11 @@ const changeLastInput = function changeLastInput(key) {
 };
 
 const insertOperator = function insertOperator(key) {
+  if (result === 'LIMIT') {
+    input = [];
+    result = '';
+  }
+
   if (result) {
     input.splice(0, input.length, result);
     result = '';
