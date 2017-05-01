@@ -21,7 +21,7 @@ ul li {
     text-align: right;
     background: #000;
     color: #fff;
-    font: 300 3em/2em sans-serif; }
+    font: 100 3em/2em 'Helvetica Neue', sans-serif; }
 
 .buttons {
     display: grid;
@@ -46,6 +46,9 @@ ul li {
 .button span {
     grid-area: 2 / 2;
     text-align: center; }
+
+.bold {
+    font-weight: bold; }
 
 .button-lg {
     grid-column: span 2;
