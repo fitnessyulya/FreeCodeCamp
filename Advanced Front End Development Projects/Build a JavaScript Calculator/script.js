@@ -62,8 +62,27 @@ const calculate = function calculate() {
   console.log(`result is ${result}`);
 };
 
+const displayLimit = function displayLimit() {
+  if ((result || lastInput().val).length > 10) {
+    return true;
+  }
+};
+
+const roundFloat = function roundFloat() {
+  return Number(result).toFixed(2);
+};
+
+const checkLimit = function checkLimit() {
+  if ((result % 1 !== 0) && (roundFloat().length < 10)) {
+    result = roundFloat();
+  } else if (displayLimit()) {
+    result = 'LIMIT';
+  }
+};
 
 const displayInput = function displayInput() {
+  checkLimit();
+
   if (result) {
     display.innerHTML = result;
   } else if (reNum.test(lastInput().val)) {
