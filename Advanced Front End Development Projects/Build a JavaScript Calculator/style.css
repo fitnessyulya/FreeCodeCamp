@@ -66,3 +66,23 @@ ul li {
     color: #2B2723;
     background-color: #C1B29D; }
 
+/* hide +/- and % */
+.buttons :nth-child(2) {
+    border-right: none; }
+
+.buttons :nth-child(3) {
+    border-left: none; }
+
+.buttons :nth-child(2) span,
+.buttons :nth-child(3) span {
+    visibility: hidden; }
+
+.buttons :nth-child(2):hover,
+.buttons :nth-child(3):hover
+ {
+    cursor: default; }
+
+.buttons :nth-child(2):active,
+.buttons :nth-child(3):active
+ {
+    background: #C1B29D; }
