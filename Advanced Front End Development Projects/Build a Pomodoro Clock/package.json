@@ -1,0 +1,12 @@
+{
+  "name": "A-Pomodoro-Clock",
+  "version": "1.0.0",
+  "description": "Free Code Camp Advenced Front End Development Project",
+  "main": "index.js",
+  "repository": "gatezh/FreeCodeCamp",
+  "author": "Sergii Gatezh",
+  "license": "MIT",
+  "dependencies": {
+    "normalize.css": "^6.0.0"
+  }
+}
