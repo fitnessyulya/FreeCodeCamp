@@ -39,9 +39,22 @@ const prepareSession = function prepareSession() {
   }
 };
 
+const switchSession = function switchSession() {
+  if (session.period === 'work') {
+    session.period = 'break';
+  } else {
+    session.period = 'work';
+  }
+  prepareSession();
+};
+
 const runSession = function runSession() {
-  session.timeLeft -= 1;
-  console.log(session.timeLeft);
+  if (session.timeLeft !== 0) {
+    session.timeLeft -= 1;
+  } else {
+    switchSession();
+  }
+  console.log(`${session.timeLeft} seconds of ${session.period} left`);
 };
 
 timerControl.onclick = function () {
