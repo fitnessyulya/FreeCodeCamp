@@ -3,6 +3,8 @@ const session = {
   workLength: 25,
   breakLength: 5,
   status: 0,
+  period: 'work',
+  timeLeft: 0,
 };
 const workTimerElement = document.getElementById('work-timer-element');
 const breakTimerElement = document.getElementById('break-timer-element');
@@ -29,19 +31,31 @@ const changeBreakTime = function changeBreakTime(num, timerType = 'breakLength')
   breakTimerElement.innerHTML = session.breakLength;
 };
 
+const prepareSession = function prepareSession() {
+  if (session.period === 'work') {
+    session.timeLeft = session.workLength * 60;
+  } else {
+    session.timeLeft = session.breakLength * 60;
+  }
+};
+
 const runSession = function runSession() {
-  console.log(session.breakLength);
+  session.timeLeft -= 1;
+  console.log(session.timeLeft);
 };
 
 timerControl.onclick = function () {
   if (!session.status) {
+    prepareSession();
     session.timer = setInterval(runSession, 1000);
     session.status = 'running';
     timerControl.innerText = 'pause';
   } else if (session.status === 'paused') {
+    session.timer = setInterval(runSession, 1000);
     session.status = 'continued';
     timerControl.innerText = 'pause';
   } else {
+    clearInterval(session.timer);
     session.status = 'paused';
     timerControl.innerText = 'continue';
   }
