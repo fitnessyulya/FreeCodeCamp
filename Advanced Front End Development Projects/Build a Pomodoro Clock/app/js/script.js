@@ -1,26 +1,34 @@
 
-let workLength = 25;
-let breakLength = 5;
+let session = {
+  workLength: 25,
+  breakLength: 5,
+};
 const workTimerElement = document.getElementById('work-timer-element');
 const breakTimerElement = document.getElementById('break-timer-element');
+const timerControl = document.getElementById('timer-control');
 
-workTimerElement.innerHTML = workLength;
-breakTimerElement.innerHTML = breakLength;
+workTimerElement.innerHTML = session.workLength;
+breakTimerElement.innerHTML = session.breakLength;
+// timerControl.addEventListener('click', timer )
 
-const changeWorkTime = function changeWorkTime (num) {
-  if (num < 0 && workLength > 1) {
-    workLength -= 1;
+const applySessionChange = function applySessionChange(num, timerType) {
+  if (num < 0 && session[timerType] > 1) {
+    session[timerType] -= 1;
   } else if (num > 0) {
-    workLength += 1;
+    session[timerType] += 1;
   }
-  workTimerElement.innerHTML = workLength;
 };
 
-const changeBreakTime = function changeBreakTime (num) {
-  if (num < 0 && breakLength > 1) {
-    breakLength -= 1;
-  } else if (num > 0) {
-    breakLength += 1;
-  }
-  breakTimerElement.innerHTML = breakLength;
+const changeWorkTime = function changeWorkTime(num, timerType = 'workLength') {
+  applySessionChange(num, timerType);
+  workTimerElement.innerHTML = session.workLength;
 };
+
+const changeBreakTime = function changeBreakTime(num, timerType = 'breakLength') {
+  applySessionChange(num, timerType);
+  breakTimerElement.innerHTML = session.breakLength;
+};
+
+const pokeSession = function pokeSession () {
+
+}
