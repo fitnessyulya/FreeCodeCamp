@@ -8,10 +8,12 @@ const session = {
 };
 const workTimerElement = document.getElementById('work-timer-element');
 const breakTimerElement = document.getElementById('break-timer-element');
+const timerCountElement = document.getElementById('timer-countdown');
 const timerControl = document.getElementById('timer-control');
 
 workTimerElement.innerHTML = session.workLength;
 breakTimerElement.innerHTML = session.breakLength;
+timerCountElement.textContent = session.workLength;
 
 const applySessionChange = function applySessionChange(num, timerType) {
   if (num < 0 && session[timerType] > 1) {
@@ -24,6 +26,7 @@ const applySessionChange = function applySessionChange(num, timerType) {
 const changeWorkTime = function changeWorkTime(num, timerType = 'workLength') {
   applySessionChange(num, timerType);
   workTimerElement.innerHTML = session.workLength;
+  timerCountElement.textContent = session.workLength;
 };
 
 const changeBreakTime = function changeBreakTime(num, timerType = 'breakLength') {
