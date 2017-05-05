@@ -16,7 +16,7 @@ workTimeElement.innerHTML = session.workTime;
 breakTimeElement.innerHTML = session.breakTime;
 timerCountdownElement.textContent = session.workTime;
 
-const applySessionChange = function applySessionChange(num, timeType) {
+const applyTimeChange = function applyTimeChange(num, timeType) {
   if (num < 0 && session[timeType] > 1) {
     session[timeType] -= 1;
   } else if (num > 0) {
@@ -25,13 +25,13 @@ const applySessionChange = function applySessionChange(num, timeType) {
 };
 
 const changeWorkTime = function changeWorkTime(num, timeType = 'workTime') {
-  applySessionChange(num, timeType);
+  applyTimeChange(num, timeType);
   workTimeElement.innerHTML = session.workTime;
   timerCountdownElement.textContent = session.workTime;
 };
 
 const changeBreakTime = function changeBreakTime(num, timeType = 'breakTime') {
-  applySessionChange(num, timeType);
+  applyTimeChange(num, timeType);
   breakTimeElement.innerHTML = session.breakTime;
 };
 
@@ -46,8 +46,12 @@ const prepareSession = function prepareSession() {
 const switchSession = function switchSession() {
   if (session.period === 'workTime') {
     session.period = 'breakTime';
+    progressBar.classList.remove('bg-warning');
+    progressBar.classList.add('bg-success');
   } else {
     session.period = 'workTime';
+    progressBar.classList.remove('bg-success');
+    progressBar.classList.add('bg-warning');
   }
   prepareSession();
 };
