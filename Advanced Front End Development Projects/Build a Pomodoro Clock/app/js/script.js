@@ -1,52 +1,53 @@
 
 const session = {
-  workLength: 25,
-  breakLength: 5,
+  workTime: 25,
+  breakTime: 5,
   status: 0,
-  period: 'work',
+  period: 'workTime',
   timeLeft: 0,
 };
-const workTimerElement = document.getElementById('work-timer-element');
-const breakTimerElement = document.getElementById('break-timer-element');
+const workTimeElement = document.getElementById('work-time-element');
+const breakTimeElement = document.getElementById('break-time-element');
 const timerCountdownElement = document.getElementById('timer-countdown');
 const timerControl = document.getElementById('timer-control');
+const progressBar = document.getElementById('progress-bar');
 
-workTimerElement.innerHTML = session.workLength;
-breakTimerElement.innerHTML = session.breakLength;
-timerCountdownElement.textContent = session.workLength;
+workTimeElement.innerHTML = session.workTime;
+breakTimeElement.innerHTML = session.breakTime;
+timerCountdownElement.textContent = session.workTime;
 
-const applySessionChange = function applySessionChange(num, timerType) {
-  if (num < 0 && session[timerType] > 1) {
-    session[timerType] -= 1;
+const applySessionChange = function applySessionChange(num, timeType) {
+  if (num < 0 && session[timeType] > 1) {
+    session[timeType] -= 1;
   } else if (num > 0) {
-    session[timerType] += 1;
+    session[timeType] += 1;
   }
 };
 
-const changeWorkTime = function changeWorkTime(num, timerType = 'workLength') {
-  applySessionChange(num, timerType);
-  workTimerElement.innerHTML = session.workLength;
-  timerCountdownElement.textContent = session.workLength;
+const changeWorkTime = function changeWorkTime(num, timeType = 'workTime') {
+  applySessionChange(num, timeType);
+  workTimeElement.innerHTML = session.workTime;
+  timerCountdownElement.textContent = session.workTime;
 };
 
-const changeBreakTime = function changeBreakTime(num, timerType = 'breakLength') {
-  applySessionChange(num, timerType);
-  breakTimerElement.innerHTML = session.breakLength;
+const changeBreakTime = function changeBreakTime(num, timeType = 'breakTime') {
+  applySessionChange(num, timeType);
+  breakTimeElement.innerHTML = session.breakTime;
 };
 
 const prepareSession = function prepareSession() {
-  if (session.period === 'work') {
-    session.timeLeft = session.workLength * 60;
+  if (session.period === 'workTime') {
+    session.timeLeft = session.workTime * 60;
   } else {
-    session.timeLeft = session.breakLength * 60;
+    session.timeLeft = session.breakTime * 60;
   }
 };
 
 const switchSession = function switchSession() {
-  if (session.period === 'work') {
-    session.period = 'break';
+  if (session.period === 'workTime') {
+    session.period = 'breakTime';
   } else {
-    session.period = 'work';
+    session.period = 'workTime';
   }
   prepareSession();
 };
@@ -66,6 +67,12 @@ const displayCountdown = function displayCountdown() {
   timerCountdownElement.textContent = `${minutes}:${seconds}`;
 };
 
+const displayProgressBar = function displayProgressBar() {
+  const period = session.period;
+  const progress = 100 - ((session.timeLeft / (session[period] * 60)) * 100);
+  progressBar.style.width = `${progress}%`;
+};
+
 const runSession = function runSession() {
   if (session.timeLeft !== 0) {
     session.timeLeft -= 1;
@@ -73,6 +80,7 @@ const runSession = function runSession() {
     switchSession();
   }
   displayCountdown();
+  displayProgressBar();
   console.log(`${session.timeLeft} seconds of ${session.period} left`);
 };
 
