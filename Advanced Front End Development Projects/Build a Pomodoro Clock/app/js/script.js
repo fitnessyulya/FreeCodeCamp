@@ -20,6 +20,7 @@ const resetTimer = function resetTimer() {
   session.timer = '';
   session.timeLeft = 0;
   session.status = 0;
+  progressBar.style.width = '0%';
   timerControl.textContent = 'start';
 };
 
