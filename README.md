@@ -37,3 +37,10 @@
 (click the image for demo)
 
 [![A JavaScript Calculator](https://github.com/gatezh/FreeCodeCamp/blob/master/images/A%20JavaScript%20Calculator%20970x500.png?raw=true)](https://codepen.io/gatezh/full/BRQdqB)
+
+
+### Build a Pomodoro Clock
+
+(click the image for demo)
+
+[![A Pomodoro Clock](https://github.com/gatezh/FreeCodeCamp/blob/master/images/A%20Pomodoro%20Clock%20970x500.png?raw=true)](http://codepen.io/gatezh/full/aWWgMM)
