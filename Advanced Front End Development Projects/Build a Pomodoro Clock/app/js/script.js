@@ -8,12 +8,12 @@ const session = {
 };
 const workTimerElement = document.getElementById('work-timer-element');
 const breakTimerElement = document.getElementById('break-timer-element');
-const timerCountElement = document.getElementById('timer-countdown');
+const timerCountdownElement = document.getElementById('timer-countdown');
 const timerControl = document.getElementById('timer-control');
 
 workTimerElement.innerHTML = session.workLength;
 breakTimerElement.innerHTML = session.breakLength;
-timerCountElement.textContent = session.workLength;
+timerCountdownElement.textContent = session.workLength;
 
 const applySessionChange = function applySessionChange(num, timerType) {
   if (num < 0 && session[timerType] > 1) {
@@ -26,7 +26,7 @@ const applySessionChange = function applySessionChange(num, timerType) {
 const changeWorkTime = function changeWorkTime(num, timerType = 'workLength') {
   applySessionChange(num, timerType);
   workTimerElement.innerHTML = session.workLength;
-  timerCountElement.textContent = session.workLength;
+  timerCountdownElement.textContent = session.workLength;
 };
 
 const changeBreakTime = function changeBreakTime(num, timerType = 'breakLength') {
@@ -51,12 +51,28 @@ const switchSession = function switchSession() {
   prepareSession();
 };
 
+const displayCountdown = function displayCountdown() {
+  let minutes = parseInt((session.timeLeft / 60), 10);
+  let seconds = session.timeLeft - (minutes * 60);
+  console.log(`minutes.toStringLength: ${minutes.toString().length}`);
+  if (minutes.toString().length === 1) {
+    minutes = `0${minutes}`;
+  }
+  if (seconds.toString().length === 1) {
+    seconds = `0${seconds}`;
+  }
+  console.log(`session.timeLeft: ${session.timeLeft}`);
+  console.log(`minutes: ${minutes}, seconds: ${seconds}`);
+  timerCountdownElement.textContent = `${minutes}:${seconds}`;
+};
+
 const runSession = function runSession() {
   if (session.timeLeft !== 0) {
     session.timeLeft -= 1;
   } else {
     switchSession();
   }
+  displayCountdown();
   console.log(`${session.timeLeft} seconds of ${session.period} left`);
 };
 
@@ -76,4 +92,3 @@ timerControl.onclick = function () {
     timerControl.innerText = 'continue';
   }
 };
-// timerControl.addEventListener('click', setInterval(runSession, 1000));
