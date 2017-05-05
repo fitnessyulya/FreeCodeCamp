@@ -9,12 +9,19 @@ const session = {
 const workTimeElement = document.getElementById('work-time-element');
 const breakTimeElement = document.getElementById('break-time-element');
 const timerCountdownElement = document.getElementById('timer-countdown');
-const timerControl = document.getElementById('timer-control');
 const progressBar = document.getElementById('progress-bar');
+const timerControl = document.getElementById('timer-control');
 
 workTimeElement.innerHTML = session.workTime;
 breakTimeElement.innerHTML = session.breakTime;
 timerCountdownElement.textContent = session.workTime;
+
+const resetTimer = function resetTimer() {
+  session.timer = '';
+  session.timeLeft = 0;
+  session.status = 0;
+  timerControl.textContent = 'start';
+};
 
 const applyTimeChange = function applyTimeChange(num, timeType) {
   if (num < 0 && session[timeType] > 1) {
@@ -25,14 +32,21 @@ const applyTimeChange = function applyTimeChange(num, timeType) {
 };
 
 const changeWorkTime = function changeWorkTime(num, timeType = 'workTime') {
-  applyTimeChange(num, timeType);
-  workTimeElement.innerHTML = session.workTime;
-  timerCountdownElement.textContent = session.workTime;
+  if (!session.status || session.status === 'paused') {
+    applyTimeChange(num, timeType);
+    resetTimer();
+    workTimeElement.innerHTML = session.workTime;
+    timerCountdownElement.textContent = session.workTime;
+  }
 };
 
 const changeBreakTime = function changeBreakTime(num, timeType = 'breakTime') {
-  applyTimeChange(num, timeType);
-  breakTimeElement.innerHTML = session.breakTime;
+  if (!session.status || session.status === 'paused') {
+    applyTimeChange(num, timeType);
+    resetTimer();
+    breakTimeElement.innerHTML = session.breakTime;
+    timerCountdownElement.textContent = session.workTime;
+  }
 };
 
 const prepareSession = function prepareSession() {
