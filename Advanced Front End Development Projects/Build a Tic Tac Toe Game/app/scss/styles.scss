@@ -2,6 +2,24 @@
 @import 'base/normalize';
 @import 'base/layout';
 
+body {
+    font: 1em sans-serif;
+}
+
+header {
+    text-align: center;
+    font: 1.3em sans-serif;
+}
+
+header a {
+    display: inline-block;
+    width: 1em;
+    border: 1px solid #808080;
+    border-radius: 5px;
+    line-height: 1.2em;
+    font-size: 2.5em;
+}
+
 // Remove edge borders
 #c1, #c2, #c3 {
     border-top: none; }
