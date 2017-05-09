@@ -1,13 +1,21 @@
 body {
     width: 100%;
+}
+
+.container {
+    margin: 40px auto;
     display: grid;
     grid-template-columns: repeat(3, auto);
     justify-content: center;
 }
 
-.wrapper {
-    margin: 5% auto 0;
-    grid-column: 3 / 4;
+header {
+    grid-column: 2 / 3;
+}
+
+article {
+    grid-column: 2 / 3;
+    grid-row: 2;
 }
 
 .cells {
