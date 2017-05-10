@@ -4,6 +4,7 @@ const gameField = document.querySelector('#cells');
 let playerSymbol = '';
 let computerSymbol = '';
 let lastMoveSymbol = '';
+const moves = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const chooseSymbol = function chooseSymbol(e) {
   if (e.target !== e.currentTarget) {
@@ -18,11 +19,11 @@ const chooseSymbol = function chooseSymbol(e) {
 
 const playerMove = function playerMove(e) {
   if (e.target !== e.currentTarget) {
-    const clickedCell = e.target.id;
-    const cellToMark = document.querySelector(`#${clickedCell}`);
+    const cellToMark = document.querySelector(`#${e.target.id}`);
     cellToMark.innerHTML = `<span>${playerSymbol}</span>`;
     lastMoveSymbol = cellToMark.textContent;
-    console.log('clicked on ' + clickedCell);
+    moves[e.target.id[1]] = lastMoveSymbol;
+    console.log('clicked on ' + e.target.id);
   }
   e.stopPropagation();
 };
