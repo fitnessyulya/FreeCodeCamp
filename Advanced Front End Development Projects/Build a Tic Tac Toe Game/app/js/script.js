@@ -6,6 +6,13 @@ let computerSymbol = '';
 let lastMoveSymbol = '';
 const moves = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+const firstMove = function firstMove() {
+  const options = [0, 2, 6, 8];
+  const target = options[Math.floor(Math.random() * options.length)];
+  const cellToMark = document.querySelector(`#c${target}`);
+  cellToMark.innerHTML = `<span>${computerSymbol}</span>`;
+};
+
 const chooseSymbol = function chooseSymbol(e) {
   if (e.target !== e.currentTarget) {
     const choice = e.target.textContent;
@@ -14,6 +21,9 @@ const chooseSymbol = function chooseSymbol(e) {
     computerSymbol = (playerSymbol === 'X') ? 'O' : 'X';
     symbol.removeEventListener('click', chooseSymbol, false);
     console.log(choice);
+  }
+  if (computerSymbol === 'X') {
+    firstMove();
   }
 };
 
