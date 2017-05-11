@@ -24,44 +24,17 @@ const resetGame = function resetGame() {
   console.log('after reset');
 };
 
-const winDetector = function winDetector() {
-  const horizontal = [0, 1, 2];
-  const vertical = [0, 3, 6];
-  const diagonal = [0, 4, 8];
-
-  switch (true) {
-    case (moves[0] === moves[1]) && (moves[1] === moves[2]):
-      winner = moves[0];
-      alert(`${moves[0]} won!`);
+const winDetector = function winDetector2() {
+  const combinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
+                        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                        [0, 4, 8], [2, 4, 6]];
+  for (let trio of combinations) {
+    let [x, y, z] = trio;
+    if ((moves[x] === moves[y]) && (moves[y] === moves[z])) {
+      winner = moves[x];
+      alert(`${moves[x]} won!`);
       break;
-    case (moves[3] === moves[4]) && (moves[4] === moves[5]):
-      winner = moves[3];
-      alert(`${moves[3]} won!`);
-      break;
-    case (moves[6] === moves[7]) && (moves[7] === moves[8]):
-      winner = moves[6];
-      alert(`${moves[6]} won!`);
-      break;
-    case (moves[0] === moves[3]) && (moves[3] === moves[6]):
-      winner = moves[0];
-      alert(`${moves[0]} won!`);
-      break;
-    case (moves[1] === moves[4]) && (moves[4] === moves[7]):
-      winner = moves[1];
-      alert(`${moves[1]} won!`);
-      break;
-    case (moves[2] === moves[5]) && (moves[5] === moves[8]):
-      winner = moves[2];
-      alert(`${moves[2]} won!`);
-      break;
-    case (moves[0] === moves[4]) && (moves[4] === moves[8]):
-      winner = moves[0];
-      alert(`${moves[0]} won!`);
-      break;
-    case (moves[2] === moves[4]) && (moves[4] === moves[6]):
-      winner = moves[2];
-      alert(`${moves[2]} won!`);
-      break;
+    }
   }
   if (winner) {
     setTimeout(resetGame, 3000);
