@@ -15,6 +15,7 @@ const resetGame = function resetGame() {
   winner = '';
   moves = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   for (let child of gameField.children) {
+    child.style = 'none';
     child.innerHTML = '<span></span>';
   }
   for (let symbol of symbols.children) {
@@ -32,7 +33,13 @@ const winDetector = function winDetector2() {
     let [x, y, z] = trio;
     if ((moves[x] === moves[y]) && (moves[y] === moves[z])) {
       winner = moves[x];
-      alert(`${moves[x]} won!`);
+      for (let child of gameField.children) {
+        console.log(child.id[1]);
+        if ((+child.id[1] === x) || (+child.id[1] == y) || (+child.id[1] == z)) {
+          console.log('changing background');
+          child.style.backgroundColor = 'yellow';
+        }
+      }
       break;
     }
   }
