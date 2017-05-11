@@ -89,7 +89,22 @@ const computerMove = function computerMove() {
       markCell(line.sort().toString().match(/\d/)[0], computerSymbol);
     }
   }
+  // Block
+  console.log(`trying to block`);
+  for (let trio of combinations) {
+    let [x, y, z] = trio;
+    let line = [moves[x], moves[y], moves[z]].filter((el, ind, arr) => {
+      return ind === arr.indexOf(el);
+    });
+    let re = new RegExp(`^\\d,${playerSymbol}$`);
 
+    console.log(line);
+    console.log(re.test(line.sort().toString()));
+    if (re.test(line.sort().toString())) {
+      console.log(`going go mark a cell`);
+      markCell(line.sort().toString().match(/\d/)[0], computerSymbol);
+    }
+  }
   winDetector();
 };
 
