@@ -7,6 +7,9 @@ let computerSymbol = '';
 let lastMoveSymbol = '';
 let winner = '';
 let moves = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const combinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
+                      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                      [0, 4, 8], [2, 4, 6]];
 
 const resetGame = function resetGame() {
   playerSymbol = '';
@@ -25,18 +28,14 @@ const resetGame = function resetGame() {
   console.log('after reset');
 };
 
-const winDetector = function winDetector2() {
-  const combinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
-                        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-                        [0, 4, 8], [2, 4, 6]];
+const winDetector = function winDetector() {
   for (let trio of combinations) {
     let [x, y, z] = trio;
     if ((moves[x] === moves[y]) && (moves[y] === moves[z])) {
       winner = moves[x];
+      // change background for the winning line
       for (let child of gameField.children) {
-        console.log(child.id[1]);
-        if ((+child.id[1] === x) || (+child.id[1] == y) || (+child.id[1] == z)) {
-          console.log('changing background');
+        if ((+child.id[1] === x) || (+child.id[1] === y) || (+child.id[1] === z)) {
           child.style.backgroundColor = 'yellow';
         }
       }
@@ -48,11 +47,18 @@ const winDetector = function winDetector2() {
   }
 };
 
+const markCell = function markCell(target, symbol) {
+  const cellToMark = document.querySelector(`#c${target}`);
+  cellToMark.innerHTML = `<span>${symbol}</span>`;
+  moves[target] = symbol;
+};
+
 const firstMove = function firstMove() {
   const options = [0, 2, 6, 8];
   const target = options[Math.floor(Math.random() * options.length)];
-  const cellToMark = document.querySelector(`#c${target}`);
-  cellToMark.innerHTML = `<span>${computerSymbol}</span>`;
+  markCell(target, computerSymbol);
+  // const cellToMark = document.querySelector(`#c${target}`);
+  // cellToMark.innerHTML = `<span>${computerSymbol}</span>`;
 };
 
 const chooseSymbol = function chooseSymbol(e) {
@@ -70,17 +76,36 @@ const chooseSymbol = function chooseSymbol(e) {
   }
 };
 
+// strategy for the following function from here https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy
+const computerMove = function computerMove() {
+  // Win
+  for (let trio of combinations) {
+    let [x, y, z] = trio;
+    let line = [moves[x], moves[y], moves[z]].filter((el, ind, arr) => {
+      return ind === arr.indexOf(el);
+    });
+    let re = new RegExp(`^\\d,${computerSymbol}`);
+    if (re.test(line.sort().toString())) {
+      markCell(line.sort().toString().match(/\d/)[0], computerSymbol);
+    }
+  }
+
+  winDetector();
+};
+
 const playerMove = function playerMove(e) {
   if ((e.target !== e.currentTarget)
   && playerSymbol) {
-    const cellToMark = document.querySelector(`#${e.target.id}`);
-    cellToMark.innerHTML = `<span>${playerSymbol}</span>`;
-    lastMoveSymbol = cellToMark.textContent;
-    moves[e.target.id[1]] = lastMoveSymbol;
+    markCell(e.target.id[1], playerSymbol);
+    // const cellToMark = document.querySelector(`#${e.target.id}`);
+    // cellToMark.innerHTML = `<span>${playerSymbol}</span>`;
+    // lastMoveSymbol = cellToMark.textContent;
+    // moves[e.target.id[1]] = lastMoveSymbol;
     console.log('clicked on ' + e.target.id);
   }
   e.stopPropagation();
   winDetector();
+  computerMove();
 };
 
 symbols.addEventListener('click', chooseSymbol, false);
