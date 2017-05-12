@@ -48,9 +48,12 @@ const winDetector = function winDetector() {
 };
 
 const markCell = function markCell(target, symbol) {
-  const cellToMark = document.querySelector(`#c${target}`);
-  cellToMark.innerHTML = `<span>${symbol}</span>`;
-  moves[target] = symbol;
+  if (lastMoveSymbol !== symbol) {
+    const cellToMark = document.querySelector(`#c${target}`);
+    cellToMark.innerHTML = `<span>${symbol}</span>`;
+    moves[target] = symbol;
+    lastMoveSymbol = symbol;
+  }
 };
 
 const firstMove = function firstMove() {
@@ -71,20 +74,41 @@ const chooseSymbol = function chooseSymbol(e) {
     console.log(choice);
   }
   e.stopPropagation();
-  if (computerSymbol === 'X') {
-    firstMove();
-  }
+  // if (computerSymbol === 'X') {
+  //   firstMove();
+  // }
+  computerMove();
 };
 
 // strategy for the following function from here https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy
 const computerMove = function computerMove() {
+  const corners = [0, 2, 6, 8];
+  const edges = [1, 3, 5, 7];
+  const center = 4;
+  const targetCorner = corners[Math.floor(Math.random() * corners.length)];
+  // Opening
+  if (moves.indexOf(computerSymbol) < 0
+  && computerSymbol === 'X') {
+    markCell(targetCorner, computerSymbol);
+  } else if (moves.indexOf(playerSymbol) >= 0
+  && moves.indexOf(computerSymbol, moves.indexOf(computerSymbol)) === -1) {
+    const firstX = moves.indexOf('X');
+    switch (firstX) {
+      case moves.indexOf(firstX) === center:
+        markCell(targetCorner, computerSymbol);
+        break;
+      default:
+      case corners.indexOf(firstX) >= 0:
+        markCell(center, computerSymbol);
+    }
+  }
   // Win
   for (let trio of combinations) {
     let [x, y, z] = trio;
     let line = [moves[x], moves[y], moves[z]].filter((el, ind, arr) => {
       return ind === arr.indexOf(el);
     });
-    let re = new RegExp(`^\\d,${computerSymbol}`);
+    let re = new RegExp(`^\\d,${computerSymbol}$`);
     if (re.test(line.sort().toString())) {
       markCell(line.sort().toString().match(/\d/)[0], computerSymbol);
     }
@@ -105,6 +129,11 @@ const computerMove = function computerMove() {
       markCell(line.sort().toString().match(/\d/)[0], computerSymbol);
     }
   }
+  // Fork
+  console.log(`trying to fork`);
+
+
+
   winDetector();
 };
 
