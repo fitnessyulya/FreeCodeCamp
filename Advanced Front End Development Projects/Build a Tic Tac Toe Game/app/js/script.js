@@ -26,7 +26,7 @@ const resetGame = function resetGame() {
     child.innerHTML = '<span></span>';
   }
   for (let symbol of symbols.children) {
-    symbol.style = 'none';
+    symbol.style.backgroundColor = '';
   }
   symbols.addEventListener('click', chooseSymbol, false);
   console.log('after reset');
@@ -52,11 +52,13 @@ const winDetector = function winDetector() {
 };
 
 const markCell = function markCell(target, symbol) {
-  if (lastMoveSymbol !== symbol) {
+  if (lastMoveSymbol !== symbol
+  && /\d/.test(moves[target])) {
     const cellToMark = document.querySelector(`#c${target}`);
     cellToMark.innerHTML = `<span>${symbol}</span>`;
     moves[target] = symbol;
     lastMoveSymbol = symbol;
+    console.log(`real mark on ${target}`);
   }
 };
 
@@ -147,19 +149,36 @@ const computerMove = function computerMove() {
         console.log('forked step 1');
       }
     }
-    let fork = moves.reduce((acc, cur, ind) => {
-      return (cur === playerSymbol) ? acc.concat(ind) : acc;
-    }, []);
-    console.log(`fork is ${fork}`);
 
-    if (fork.length === 2) {
-      for (const [ind, pair] of edgePairs.entries()) {
-        if (pair.indexOf(fork[0]) >= 0
-        && pair.indexOf(fork[1]) >= 0) {
-          markCell(corners[ind], computerSymbol);
-          console.log(`prevent corner fork ${pair}`);
+    for (const duo of edgePairs) {
+      let [x, y] = duo;
+      // let edges = [moves[x], moves[y]].reduce((acc, cur) => {
+      //   return (cur === playerSymbol) ? acc.concat(cur) : acc;
+      // }, []);
+      if (moves[x] === moves[y]
+      && moves[x] === playerSymbol) {
+        for (const [ind, pair] of edgePairs.entries()) {
+          if (pair.indexOf(x) >= 0
+          && pair.indexOf(y) >= 0) {
+            markCell(corners[ind], computerSymbol);
+            console.log(`prevent corner fork ${pair}`);
+          }
         }
       }
+
+    // let fork = moves.reduce((acc, cur, ind) => {
+    //   return (cur === playerSymbol) ? acc.concat(ind) : acc;
+    // }, []);
+    // console.log(`fork is ${fork}`);
+
+    // if (fork.length === 2) {
+    //   for (const [ind, pair] of edgePairs.entries()) {
+    //     if (pair.indexOf(fork[0]) >= 0
+    //     && pair.indexOf(fork[1]) >= 0) {
+    //       markCell(corners[ind], computerSymbol);
+    //       console.log(`prevent corner fork ${pair}`);
+    //     }
+    //   }
     }
 
     // Blocking an opponent's fork
@@ -168,7 +187,8 @@ const computerMove = function computerMove() {
       let oneInLine = [moves[x], moves[y], moves[z]];
       let re = new RegExp(`^${computerSymbol},${playerSymbol},${playerSymbol}$`);
 
-      if (re.test(oneInLine.sort().toString())) {
+      if (re.test(oneInLine.sort().toString())
+      && moves[y] === playerSymbol) {
         const ind = trio[oneInLine.indexOf(`${computerSymbol}`)];
         if (cornerPairs[0].indexOf(ind) >= 0) {
           const corner = randomSelect(cornerPairs[1]);
@@ -185,6 +205,14 @@ const computerMove = function computerMove() {
         }
       }
     }
+
+    // // Empty corner
+    // for (const cell of corners) {
+    //   if (/\d/.test(moves[cell])) {
+    //     markCell(cell, computerSymbol);
+    //     console.log(`marked an empty corner ${cell}`);
+    //   }
+    // }
 
     // Empty side
     for (let cell of edges) {
