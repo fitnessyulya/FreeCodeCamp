@@ -44,3 +44,10 @@
 (click the image for demo)
 
 [![A Pomodoro Clock](https://github.com/gatezh/FreeCodeCamp/blob/master/images/A%20Pomodoro%20Clock%20970x500.png?raw=true)](http://codepen.io/gatezh/full/aWWgMM)
+
+
+### Build a Tic Tac Toe Game
+
+(click the image for demo)
+
+[![A Tic Tac Toe Game](https://github.com/gatezh/FreeCodeCamp/blob/master/images/A%20Tic%20Tac%20Toe%20Game%20970x500.png?raw=true)](https://codepen.io/gatezh/full/MmERVQ)
