@@ -1,0 +1,28 @@
+body {
+  width: 100%; }
+
+.container {
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center; }
+
+header {
+  grid-column: 2 / 3; }
+
+article {
+  grid-column: 2 / 3;
+  grid-row: 2; }
+
+.cells {
+  display: grid;
+  grid-template: repeat(3, 99px)/repeat(3, 99px); }
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-content: center; }
+
+.cell span {
+  justify-self: center;
+  align-self: center; }
