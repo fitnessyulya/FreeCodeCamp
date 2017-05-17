@@ -1,0 +1,24 @@
+{
+  "name": "simon-game",
+  "version": "1.0.0",
+  "description": "Free Code Camp Advenced Front End Development Project",
+  "main": "script.js",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.18.11",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatezh/FreeCodeCamp"
+  },
+  "author": "Sergii Gatezh",
+  "license": "ISC"
+}

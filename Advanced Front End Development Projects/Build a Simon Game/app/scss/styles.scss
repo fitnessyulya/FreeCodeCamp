@@ -1,0 +1,57 @@
+
+@import 'base/normalize';
+// @import 'base/variables';
+@import 'base/layout';
+
+$grid-cell-size: 12em;
+$border: 0.3em;
+$dbl-border: $border * 2;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font: 1em sans-serif;
+}
+
+.play-button {
+    border: $border solid black;
+}
+
+.green {
+    background-color: green;
+    border-top-left-radius: 100%;
+    border-top: $dbl-border solid black;
+    border-left: $dbl-border solid black;
+}
+
+.red {
+    background-color: red;
+    border-top-right-radius: 100%;
+    border-top: $dbl-border solid black;
+    border-right: $dbl-border solid black;
+}
+
+.yellow {
+    background-color: yellow;
+    border-bottom-left-radius: 100%;
+    border-bottom: $dbl-border solid black;
+    border-left: $dbl-border solid black;
+}
+
+.blue {
+    background-color: blue;
+    border-bottom-right-radius: 100%;
+    border-bottom: $dbl-border solid black;
+    border-right: $dbl-border solid black;
+}
+
+#controls {
+    min-width: $grid-cell-size;
+    min-height: $grid-cell-size;
+    background-color: grey;
+    border-radius: 50%;
+    text-align: center;
+    border: $dbl-border solid black;
+}
