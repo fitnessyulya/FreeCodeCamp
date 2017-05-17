@@ -1,0 +1,9 @@
+
+#controls {
+    min-width: $grid-cell-size;
+    min-height: $grid-cell-size;
+    background-color: grey;
+    border-radius: 50%;
+    text-align: center;
+    border: $dbl-border solid black;
+}

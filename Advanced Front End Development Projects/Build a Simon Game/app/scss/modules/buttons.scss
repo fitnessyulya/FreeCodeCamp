@@ -1,0 +1,32 @@
+
+.play-button {
+    border: $border solid black;
+}
+
+.green {
+    background-color: green;
+    border-top-left-radius: 100%;
+    border-top: $dbl-border solid black;
+    border-left: $dbl-border solid black;
+}
+
+.red {
+    background-color: red;
+    border-top-right-radius: 100%;
+    border-top: $dbl-border solid black;
+    border-right: $dbl-border solid black;
+}
+
+.yellow {
+    background-color: yellow;
+    border-bottom-left-radius: 100%;
+    border-bottom: $dbl-border solid black;
+    border-left: $dbl-border solid black;
+}
+
+.blue {
+    background-color: blue;
+    border-bottom-right-radius: 100%;
+    border-bottom: $dbl-border solid black;
+    border-right: $dbl-border solid black;
+}

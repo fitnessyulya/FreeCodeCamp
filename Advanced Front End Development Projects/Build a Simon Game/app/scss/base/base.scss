@@ -1,0 +1,13 @@
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+// Base Styles
+body {
+    font: 1em sans-serif;
+}
