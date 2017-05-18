@@ -2,8 +2,38 @@
 #controls {
     min-width: $grid-cell-size;
     min-height: $grid-cell-size;
-    background-color: grey;
+    background-color: lightgray;
     border-radius: 50%;
     text-align: center;
     border: $dbl-border solid black;
+}
+
+#on-off {
+    margin: 0 auto;
+    width: 3.3em;
+    height: 1.5em;
+    background-color: black;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#toggle {
+    position: absolute;
+    appearance: none;
+    left: -100%;
+}
+
+#toggle-label {
+    margin: 0 0.2em;
+    width: 1.4em;
+    height: 1.1em;
+    background-color: lightslategrey;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#toggle:checked + #toggle-label {
+    margin-left: 1.7em;
 }
