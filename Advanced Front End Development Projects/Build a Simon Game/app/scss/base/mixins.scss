@@ -1,0 +1,4 @@
+@mixin active-button($background) {
+    background-color: $background;
+    box-shadow: 0 0 80px $background;
+}

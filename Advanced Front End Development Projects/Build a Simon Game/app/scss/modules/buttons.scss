@@ -9,8 +9,7 @@
     border-top: $dbl-border solid black;
     border-left: $dbl-border solid black;
     &:active {
-        background-color: #00cc00;
-        box-shadow: 0 0 80px #00cc00;
+        @include active-button($green-active);
     }
 }
 
@@ -20,8 +19,7 @@
     border-top: $dbl-border solid black;
     border-right: $dbl-border solid black;
     &:active {
-        background-color: red;
-        box-shadow: 0 0 80px red;
+        @include active-button($red-active);
     }
 }
 
@@ -31,8 +29,7 @@
     border-bottom: $dbl-border solid black;
     border-left: $dbl-border solid black;
     &:active {
-        background-color: yellow;
-        box-shadow: 0 0 80px yellow;
+        @include active-button($yellow-active);
     }
 }
 
@@ -42,7 +39,6 @@
     border-bottom: $dbl-border solid black;
     border-right: $dbl-border solid black;
     &:active {
-        background-color: #3232ff;
-        box-shadow: 0 0 80px #3232ff;
+        @include active-button($blue-active);
     }
 }
