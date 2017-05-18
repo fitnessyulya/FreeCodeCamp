@@ -8,25 +8,41 @@
     border-top-left-radius: 100%;
     border-top: $dbl-border solid black;
     border-left: $dbl-border solid black;
+    &:active {
+        background-color: #00cc00;
+        box-shadow: 0 0 80px #00cc00;
+    }
 }
 
 .red {
-    background-color: red;
+    background-color: #cc0000;
     border-top-right-radius: 100%;
     border-top: $dbl-border solid black;
     border-right: $dbl-border solid black;
+    &:active {
+        background-color: red;
+        box-shadow: 0 0 80px red;
+    }
 }
 
 .yellow {
-    background-color: yellow;
+    background-color: #cccc00;
     border-bottom-left-radius: 100%;
     border-bottom: $dbl-border solid black;
     border-left: $dbl-border solid black;
+    &:active {
+        background-color: yellow;
+        box-shadow: 0 0 80px yellow;
+    }
 }
 
 .blue {
-    background-color: blue;
+    background-color: #0000bb;
     border-bottom-right-radius: 100%;
     border-bottom: $dbl-border solid black;
     border-right: $dbl-border solid black;
+    &:active {
+        background-color: #3232ff;
+        box-shadow: 0 0 80px #3232ff;
+    }
 }
