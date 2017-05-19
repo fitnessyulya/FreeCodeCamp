@@ -1,32 +1,31 @@
 
 const playButtons = document.querySelector('.game');
-const onOffToggle = document.querySelector('#toggle-label');
+const startButton = document.querySelector('#start-button');
 const strictMode = document.querySelector('#strict-status');
+const onOffToggle = document.querySelector('#toggle-label');
 let gameOn = false;
 let strict = false;
 let pattern = [];
 let count = pattern.length;
 
+const resetGame = function resetGame() {
+  pattern = [];
+  console.log('game is reset');
+};
+
 const levelUp = function levelUp() {
   const arr = ['green', 'red', 'yellow', 'blue'];
   pattern.push(arr[Math.floor(Math.random() * arr.length)]);
+  console.log(`leveled up, pattern is ${pattern}`);
 };
 
-const gameSwitch = function gameSwitch() {
-  gameOn = (gameOn) ? false : true;
-  if (gameOn) {
-    playButtons.addEventListener('mousedown', pressPlayButton, false);
-    document.querySelectorAll('.play-button').forEach(button => button.classList.add('available'));
-    strictMode.classList.add('available');
-  } else {
-    playButtons.removeEventListener('mousedown', pressPlayButton, false);
-    document.querySelectorAll('.play-button').forEach(button => button.classList.remove('available'));
-    strictMode.classList.remove('available');
-  }
-  console.log(`game switch is ${gameOn}`);
+const start = function start() {
+  resetGame();
+  levelUp();
+  console.log('game started');
 };
 
-function play(sound) {
+const playSound = function playSound(sound) {
   const audio = document.querySelector(`#audio-${sound}`);
   if (audio) {
     audio.play();
@@ -35,13 +34,29 @@ function play(sound) {
   }
 }
 
-const pressPlayButton = function pressPlayButton(e) {
+const pressColorButton = function pressColorButton(e) {
   if (e.target !== e.currentTarget) {
     const button = e.target.id;
     console.log(`e.target.id is ${e.target.id}`);
-    play(button);
+    playSound(button);
   }
   e.stopPropagation();
 };
 
-onOffToggle.addEventListener('click', gameSwitch, false);
+const turnOnGame = function turnOnGame() {
+  gameOn = (gameOn) ? false : true;
+  if (gameOn) {
+    playButtons.addEventListener('mousedown', pressColorButton, false);
+    startButton.addEventListener('click', start, false);
+    document.querySelectorAll('.play-button').forEach(button => button.classList.add('available'));
+    strictMode.classList.add('available');
+  } else {
+    playButtons.removeEventListener('mousedown', pressColorButton, false);
+    startButton.removeEventListener('click', start, false);
+    document.querySelectorAll('.play-button').forEach(button => button.classList.remove('available'));
+    strictMode.classList.remove('available');
+  }
+  console.log(`game switch is ${gameOn}`);
+};
+
+onOffToggle.addEventListener('click', turnOnGame, false);
