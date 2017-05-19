@@ -3,7 +3,7 @@
     border: $border solid black;
 }
 
-.green {
+#green {
     background-color: green;
     border-top-left-radius: 100%;
     border-top: $dbl-border solid black;
@@ -13,7 +13,7 @@
     }
 }
 
-.red {
+#red {
     background-color: #cc0000;
     border-top-right-radius: 100%;
     border-top: $dbl-border solid black;
@@ -23,7 +23,7 @@
     }
 }
 
-.yellow {
+#yellow {
     background-color: #cccc00;
     border-bottom-left-radius: 100%;
     border-bottom: $dbl-border solid black;
@@ -33,7 +33,7 @@
     }
 }
 
-.blue {
+#blue {
     background-color: #0000bb;
     border-bottom-right-radius: 100%;
     border-bottom: $dbl-border solid black;

@@ -413,19 +413,19 @@ body {
   min-width: 13em;
   min-height: 13em; }
 
-.green {
+#green {
   grid-row: 1 / span 1;
   grid-column: 1 / span 1; }
 
-.red {
+#red {
   grid-row: 1 / span 1;
   grid-column: 2 / span 1; }
 
-.yellow {
+#yellow {
   grid-row: 2 / span 1;
   grid-column: 1 / span 1; }
 
-.blue {
+#blue {
   grid-row: 2 / span 1;
   grid-column: 2 / span 1; }
 
@@ -438,39 +438,39 @@ body {
 .play-button {
   border: 0.4em solid black; }
 
-.green {
+#green {
   background-color: green;
   border-top-left-radius: 100%;
   border-top: 0.8em solid black;
   border-left: 0.8em solid black; }
-  .green:active {
+  #green:active {
     background-color: #00cc00;
     box-shadow: 0 0 80px #00cc00; }
 
-.red {
+#red {
   background-color: #cc0000;
   border-top-right-radius: 100%;
   border-top: 0.8em solid black;
   border-right: 0.8em solid black; }
-  .red:active {
+  #red:active {
     background-color: red;
     box-shadow: 0 0 80px red; }
 
-.yellow {
+#yellow {
   background-color: #cccc00;
   border-bottom-left-radius: 100%;
   border-bottom: 0.8em solid black;
   border-left: 0.8em solid black; }
-  .yellow:active {
+  #yellow:active {
     background-color: yellow;
     box-shadow: 0 0 80px yellow; }
 
-.blue {
+#blue {
   background-color: #0000bb;
   border-bottom-right-radius: 100%;
   border-bottom: 0.8em solid black;
   border-right: 0.8em solid black; }
-  .blue:active {
+  #blue:active {
     background-color: #3232ff;
     box-shadow: 0 0 80px #3232ff; }
 
