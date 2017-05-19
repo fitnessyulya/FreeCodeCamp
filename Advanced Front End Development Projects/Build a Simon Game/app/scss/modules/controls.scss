@@ -1,27 +1,104 @@
 
 #controls {
-    min-width: $grid-cell-size;
-    min-height: $grid-cell-size;
+    width: $grid-cell-size;
+    height: $grid-cell-size;
     background-color: lightgray;
     border-radius: 50%;
     text-align: center;
     border: $dbl-border solid black;
 }
 
+#controls > p {
+    margin-top: 1em;
+    margin-bottom: 0;
+    font: 2em 'Black Ops One', cursive;
+}
+
+#game-controls {
+    // font-size: 0.5em;
+    // background-color: cyan;
+    // width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#display {
+    width: 3em;
+    height: 2em;
+    // margin-left: 0.7em;
+    // display: inline-block;
+    background-color: darkslategray;
+    border-radius: 7px;
+    position: relative;
+    &:before {
+        content: 'COUNT';
+        position: absolute;
+        top: 2.3em;
+        left: -0.3em;
+    }
+}
+
+#start-button {
+    width: 1.5em;
+    height: 1.5em;
+    background-color: coral;
+    border: 1px solid black;
+    border-radius: 50%;
+    position: relative;
+    &:before {
+        content: 'Start';
+        position: absolute;
+        top: 1.7em;
+        left: -0.5em;
+    }
+}
+
+#strict-button {
+    width: 1.5em;
+    height: 1.5em;
+    background-color: yellow;
+    border: 1px solid black;
+    border-radius: 50%;
+    position: relative;
+    &:before {
+        content: 'Strict';
+        position: absolute;
+        top: 1.7em;
+        left: -0.5em;
+    }
+}
+
+
+
+
+
 #on-off {
-    margin: 0 auto;
+    margin: 2.1em auto 0;
     width: 3.3em;
     height: 1.5em;
     background-color: black;
     border-radius: 5px;
+    position: relative;
     display: flex;
     align-items: center;
+    // font: 0.8em sans-serif;
+    &:before {
+        content: "OFF";
+        position: absolute;
+        right: 3.5em;
+    }
+    &:after {
+        content: "ON";
+        position: absolute;
+        left: 3.5em;
+    }
 }
 
 #toggle {
     position: absolute;
     appearance: none;
-    left: -100%;
+    left: -9999%;
 }
 
 #toggle-label {

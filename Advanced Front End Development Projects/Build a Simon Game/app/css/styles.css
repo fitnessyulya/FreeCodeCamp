@@ -406,12 +406,12 @@ body {
 
 .game {
   display: grid;
-  grid-template-columns: 12em 12em;
-  grid-template-rows: 12em 12em; }
+  grid-template-columns: 13em 13em;
+  grid-template-rows: 13em 13em; }
 
 .gbutton {
-  min-width: 12em;
-  min-height: 12em; }
+  min-width: 13em;
+  min-height: 13em; }
 
 .green {
   grid-row: 1 / span 1;
@@ -436,13 +436,13 @@ body {
   align-self: center; }
 
 .play-button {
-  border: 0.3em solid black; }
+  border: 0.4em solid black; }
 
 .green {
   background-color: green;
   border-top-left-radius: 100%;
-  border-top: 0.6em solid black;
-  border-left: 0.6em solid black; }
+  border-top: 0.8em solid black;
+  border-left: 0.8em solid black; }
   .green:active {
     background-color: #00cc00;
     box-shadow: 0 0 80px #00cc00; }
@@ -450,8 +450,8 @@ body {
 .red {
   background-color: #cc0000;
   border-top-right-radius: 100%;
-  border-top: 0.6em solid black;
-  border-right: 0.6em solid black; }
+  border-top: 0.8em solid black;
+  border-right: 0.8em solid black; }
   .red:active {
     background-color: red;
     box-shadow: 0 0 80px red; }
@@ -459,8 +459,8 @@ body {
 .yellow {
   background-color: #cccc00;
   border-bottom-left-radius: 100%;
-  border-bottom: 0.6em solid black;
-  border-left: 0.6em solid black; }
+  border-bottom: 0.8em solid black;
+  border-left: 0.8em solid black; }
   .yellow:active {
     background-color: yellow;
     box-shadow: 0 0 80px yellow; }
@@ -468,33 +468,90 @@ body {
 .blue {
   background-color: #0000bb;
   border-bottom-right-radius: 100%;
-  border-bottom: 0.6em solid black;
-  border-right: 0.6em solid black; }
+  border-bottom: 0.8em solid black;
+  border-right: 0.8em solid black; }
   .blue:active {
     background-color: #3232ff;
     box-shadow: 0 0 80px #3232ff; }
 
 #controls {
-  min-width: 12em;
-  min-height: 12em;
+  width: 13em;
+  height: 13em;
   background-color: lightgray;
   border-radius: 50%;
   text-align: center;
-  border: 0.6em solid black; }
+  border: 0.8em solid black; }
+
+#controls > p {
+  margin-top: 1em;
+  margin-bottom: 0;
+  font: 2em 'Black Ops One', cursive; }
+
+#game-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around; }
+
+#display {
+  width: 3em;
+  height: 2em;
+  background-color: darkslategray;
+  border-radius: 7px;
+  position: relative; }
+  #display:before {
+    content: 'COUNT';
+    position: absolute;
+    top: 2.3em;
+    left: -0.3em; }
+
+#start-button {
+  width: 1.5em;
+  height: 1.5em;
+  background-color: coral;
+  border: 1px solid black;
+  border-radius: 50%;
+  position: relative; }
+  #start-button:before {
+    content: 'Start';
+    position: absolute;
+    top: 1.7em;
+    left: -0.5em; }
+
+#strict-button {
+  width: 1.5em;
+  height: 1.5em;
+  background-color: yellow;
+  border: 1px solid black;
+  border-radius: 50%;
+  position: relative; }
+  #strict-button:before {
+    content: 'Strict';
+    position: absolute;
+    top: 1.7em;
+    left: -0.5em; }
 
 #on-off {
-  margin: 0 auto;
+  margin: 2.1em auto 0;
   width: 3.3em;
   height: 1.5em;
   background-color: black;
   border-radius: 5px;
+  position: relative;
   display: flex;
   align-items: center; }
+  #on-off:before {
+    content: "OFF";
+    position: absolute;
+    right: 3.5em; }
+  #on-off:after {
+    content: "ON";
+    position: absolute;
+    left: 3.5em; }
 
 #toggle {
   position: absolute;
   appearance: none;
-  left: -100%; }
+  left: -9999%; }
 
 #toggle-label {
   margin: 0 0.2em;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Simon Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Black+Ops+One" rel="stylesheet"> 
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -16,7 +17,11 @@
         <div class="play-button blue"></div>
         <div id="controls">
             <p>Simon</p>
-            <div>Start - Strict</div>
+            <div id="game-controls">
+                <div id="display"></div>
+                <a id="start-button"></a>
+                <a id="strict-button"></a>
+            </div>
             <div id="on-off">
                 <input type="checkbox" name="toggle" id="toggle" />
                 <label for="toggle" id="toggle-label"></label>
