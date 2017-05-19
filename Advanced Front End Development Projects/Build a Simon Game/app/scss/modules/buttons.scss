@@ -8,7 +8,7 @@
     border-top-left-radius: 100%;
     border-top: $dbl-border solid black;
     border-left: $dbl-border solid black;
-    &:active.available {
+    &.active.available {
         @include active-button($green-active);
     }
 }
@@ -18,7 +18,7 @@
     border-top-right-radius: 100%;
     border-top: $dbl-border solid black;
     border-right: $dbl-border solid black;
-    &:active.available {
+    &.active.available {
         @include active-button($red-active);
     }
 }
@@ -28,7 +28,7 @@
     border-bottom-left-radius: 100%;
     border-bottom: $dbl-border solid black;
     border-left: $dbl-border solid black;
-    &:active.available {
+    &.active.available {
         @include active-button($yellow-active);
     }
 }
@@ -38,7 +38,7 @@
     border-bottom-right-radius: 100%;
     border-bottom: $dbl-border solid black;
     border-right: $dbl-border solid black;
-    &:active.available {
+    &.active.available {
         @include active-button($blue-active);
     }
 }

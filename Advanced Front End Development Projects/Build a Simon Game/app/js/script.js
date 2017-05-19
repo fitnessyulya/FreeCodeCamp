@@ -32,13 +32,22 @@ const playSound = function playSound(sound) {
     count += 1;
     console.log(`count now is ${count}`);
   }
-}
+};
 
 const pressColorButton = function pressColorButton(e) {
   if (e.target !== e.currentTarget) {
     const button = e.target.id;
     console.log(`e.target.id is ${e.target.id}`);
+    document.querySelector(`#${button}`).classList.add('active');
     playSound(button);
+  }
+  e.stopPropagation();
+};
+
+const releaseColorButton = function releaseColorButton(e) {
+  if (e.target !== e.currentTarget) {
+    const button = e.target.id;
+    document.querySelector(`#${button}`).classList.remove('active');
   }
   e.stopPropagation();
 };
@@ -47,6 +56,7 @@ const turnOnGame = function turnOnGame() {
   gameOn = (gameOn) ? false : true;
   if (gameOn) {
     playButtons.addEventListener('mousedown', pressColorButton, false);
+    playButtons.addEventListener('mouseup', releaseColorButton, false);
     startButton.addEventListener('click', start, false);
     document.querySelectorAll('.play-button').forEach(button => button.classList.add('available'));
     strictMode.classList.add('available');
@@ -58,5 +68,11 @@ const turnOnGame = function turnOnGame() {
   }
   console.log(`game switch is ${gameOn}`);
 };
+
+// const gamePlay = function gamePlay() {
+//   pattern.forEach(button => {
+
+//   });
+// };
 
 onOffToggle.addEventListener('click', turnOnGame, false);
