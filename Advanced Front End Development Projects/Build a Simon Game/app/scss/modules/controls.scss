@@ -9,7 +9,7 @@
 }
 
 #controls > p {
-    margin-top: 1em;
+    margin-top: 0.8em;
     margin-bottom: 0;
     font: 2em 'Black Ops One', cursive;
 }
@@ -55,26 +55,51 @@
 }
 
 #strict-button {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse; 
+    align-items: center;
+}
+
+#strict-status {
+    width: 0.7em;
+    height: 0.7em;
+    border: 0.1em solid black;
+    border-radius: 50%;
+    background-color: darkslategray;
+}
+
+#strict-mode {
+    position: absolute;
+    appearance: none;
+    left: -9999px;
+}
+
+#strict-mode-label {
     width: 1.5em;
     height: 1.5em;
+    margin-top: 0.2em;
+    margin-bottom: 0.8em;
     background-color: yellow;
     border: 1px solid black;
     border-radius: 50%;
-    position: relative;
     &:before {
         content: 'Strict';
         position: absolute;
-        top: 1.7em;
+        top: 2.6em;
         left: -0.5em;
     }
 }
 
-
+#strict-mode:checked ~ #strict-status.available {
+    background-color: red;
+    box-shadow: 0 0 5px red;
+}
 
 
 
 #on-off {
-    margin: 2.1em auto 0;
+    margin: 1.5em auto 0;
     width: 3.3em;
     height: 1.5em;
     background-color: black;
