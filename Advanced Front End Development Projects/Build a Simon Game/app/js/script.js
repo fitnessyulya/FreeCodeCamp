@@ -19,12 +19,6 @@ const levelUp = function levelUp() {
   console.log(`leveled up, pattern is ${pattern}`);
 };
 
-const start = function start() {
-  resetGame();
-  levelUp();
-  console.log('game started');
-};
-
 const playSound = function playSound(sound) {
   const audio = document.querySelector(`#audio-${sound}`);
   if (audio) {
@@ -69,10 +63,24 @@ const turnOnGame = function turnOnGame() {
   console.log(`game switch is ${gameOn}`);
 };
 
-// const gamePlay = function gamePlay() {
-//   pattern.forEach(button => {
+const gamePlay = function gamePlay() {
+  for (const [index, button] of pattern.entries()) {
+    console.log(`${button} was pressed by gamePlay function`);
+    setTimeout(() => {
+      document.querySelector(`#${button}`).classList.add('active');
+      playSound(button);
+    }, (index * 900));
+    setTimeout(() => {
+      document.querySelector(`#${button}`).classList.remove('active');
+    }, (index + 1) * 900);
+  }
+};
 
-//   });
-// };
+const start = function start() {
+  resetGame();
+  levelUp();
+  gamePlay();
+  console.log('game started');
+};
 
 onOffToggle.addEventListener('click', turnOnGame, false);
