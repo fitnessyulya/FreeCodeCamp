@@ -497,12 +497,19 @@ body {
   height: 2em;
   background-color: darkslategray;
   border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative; }
   #display:before {
     content: 'COUNT';
+    color: #000;
     position: absolute;
     top: 2.3em;
     left: -0.3em; }
+
+#display-info {
+  color: red; }
 
 #start-button {
   width: 1.5em;

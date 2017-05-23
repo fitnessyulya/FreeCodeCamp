@@ -30,13 +30,21 @@
     // display: inline-block;
     background-color: darkslategray;
     border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     &:before {
         content: 'COUNT';
+        color: #000;
         position: absolute;
         top: 2.3em;
         left: -0.3em;
     }
+}
+
+#display-info {
+    color: red;
 }
 
 #start-button {

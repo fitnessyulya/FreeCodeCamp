@@ -30,6 +30,15 @@ const playSound = function playSound(sound) {
   }
 };
 
+const display = function display(info) {
+  console.log(`display info is ${info}`);
+  let infoStr = info.toString();
+  if (/\d/.test(infoStr) && infoStr.length === 1) {
+    infoStr = `0${infoStr}`;
+  }
+  document.querySelector('#display-info').textContent = infoStr;
+};
+
 const pressColorButton = function pressColorButton(e) {
   if (e.target !== e.currentTarget) {
     const buttonId = e.target.id;
@@ -57,12 +66,14 @@ const turnOnGame = function turnOnGame() {
     startButton.addEventListener('click', start, false);
     document.querySelectorAll('.play-button').forEach(button => button.classList.add('available'));
     strictMode.classList.add('available');
+    display('--');
   } else {
     playButtons.removeEventListener('mousedown', pressColorButton, false);
     playButtons.removeEventListener('click', checkMove, false);
     startButton.removeEventListener('click', start, false);
     document.querySelectorAll('.play-button').forEach(button => button.classList.remove('available'));
     strictMode.classList.remove('available');
+    display('');
   }
   console.log(`game switch is ${gameOn}`);
 };
@@ -70,6 +81,7 @@ const turnOnGame = function turnOnGame() {
 const gamePlay = function gamePlay() {
   playButtons.removeEventListener('mousedown', pressColorButton, false);
   playButtons.removeEventListener('click', checkMove, false);
+  display(pattern.length);
 
   for (const [index, button] of pattern.entries()) {
     setTimeout(() => {
@@ -97,13 +109,17 @@ const checkMove = function checkMove(e) {
       playerMoves.push(e.target.id);
       if (pattern.length === playerMoves.length) {
         playerMoves = [];
+        display('OK');
         setTimeout(() => {
           continueGame();
         }, 1200);
       }
     } else {
       // function display error
-      gamePlay();
+      display('NO');
+      setTimeout(() => {
+        gamePlay();
+      }, 1200);
     }
   }
 };
@@ -111,6 +127,7 @@ const checkMove = function checkMove(e) {
 const start = function start() {
   resetGame();
   levelUp();
+  display(pattern.length);
   gamePlay();
   console.log('game started');
 };
