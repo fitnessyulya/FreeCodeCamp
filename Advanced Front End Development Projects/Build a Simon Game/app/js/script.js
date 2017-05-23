@@ -92,12 +92,13 @@ const turnOnGame = function turnOnGame() {
 };
 
 const gamePlay = function gamePlay() {
-  playButtons.removeEventListener('mousedown', pressColorButton, false);
-  playButtons.removeEventListener('click', checkMove, false);
   display(pattern.length);
 
   for (const [index, button] of pattern.entries()) {
     setTimeout(() => {
+      // playButtons.removeEventListener('mousedown', pressColorButton, false);
+      // playButtons.removeEventListener('mouseup', releaseColorButton, false);
+      // playButtons.removeEventListener('click', checkMove, false);
       console.log(`${button} was pressed by gamePlay function`);
       setTimeout(() => {
         document.querySelector(`#${button}`).classList.add('active');
@@ -106,26 +107,34 @@ const gamePlay = function gamePlay() {
       setTimeout(() => {
         document.querySelector(`#${button}`).classList.remove('active');
       }, (index + 1) * 900);
+      // playButtons.addEventListener('mousedown', pressColorButton, false);
+      // playButtons.addEventListener('mouseup', releaseColorButton, false);
+      // playButtons.addEventListener('click', checkMove, false);
     }, (index + 1) * 200);
   }
-  playButtons.addEventListener('mousedown', pressColorButton, false);
-  // playButtons.addEventListener('mouseup', releaseColorButton, false);
-  playButtons.addEventListener('click', checkMove, false);
 };
 
 const checkMove = function checkMove(e) {
-  if (e.target.id === 'green'
+  if ((e.target.id === 'green'
   || e.target.id === 'red'
   || e.target.id === 'yellow'
-  || e.target.id === 'blue') {
+  || e.target.id === 'blue') && pattern.length) {
     if (e.target.id === pattern[playerMoves.length]) {
       playerMoves.push(e.target.id);
       if (pattern.length === playerMoves.length) {
-        playerMoves = [];
-        display('OK');
-        setTimeout(() => {
-          continueGame();
-        }, 1200);
+        if (pattern.length === 20) {
+          alert('You are the winner!');
+          display('--');
+          setTimeout(() => {
+            start();
+          }, 1200);
+        } else {
+          playerMoves = [];
+          display('OK');
+          setTimeout(() => {
+            continueGame();
+          }, 1200);
+        }
       }
     } else {
       display('NO');
