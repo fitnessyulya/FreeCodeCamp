@@ -6,6 +6,7 @@ const strictButton = document.querySelector('#strict-mode-label');
 const onOffToggle = document.querySelector('#toggle-label');
 let gameOn = false;
 let strict = false;
+let gamePlayOn = false;
 let pattern = [];
 let playerMoves = [];
 let count = pattern.length;
@@ -50,7 +51,8 @@ const strictSwitch = function strictSwitch() {
 };
 
 const pressColorButton = function pressColorButton(e) {
-  if (e.target !== e.currentTarget) {
+  if (e.target !== e.currentTarget
+  && !gamePlayOn) {
     const buttonId = e.target.id;
     console.log(`e.target.id is ${e.target.id}`);
     document.querySelector(`#${buttonId}`).classList.add('active');
@@ -60,7 +62,8 @@ const pressColorButton = function pressColorButton(e) {
 };
 
 const releaseColorButton = function releaseColorButton(e) {
-  if (e.target !== e.currentTarget) {
+  if (e.target !== e.currentTarget
+  && !gamePlayOn) {
     const buttonId = e.target.id;
     document.querySelector(`#${buttonId}`).classList.remove('active');
   }
@@ -98,12 +101,12 @@ const turnOnGame = function turnOnGame() {
 
 const gamePlay = function gamePlay() {
   display(pattern.length);
-
+  gamePlayOn = true;
+  setTimeout(() => {
+    gamePlayOn = false;
+  }, 1150 * pattern.length);
   for (const [index, button] of pattern.entries()) {
     setTimeout(() => {
-      // playButtons.removeEventListener('mousedown', pressColorButton, false);
-      // playButtons.removeEventListener('mouseup', releaseColorButton, false);
-      // playButtons.removeEventListener('click', checkMove, false);
       console.log(`${button} was pressed by gamePlay function`);
       setTimeout(() => {
         document.querySelector(`#${button}`).classList.add('active');
@@ -112,10 +115,7 @@ const gamePlay = function gamePlay() {
       setTimeout(() => {
         document.querySelector(`#${button}`).classList.remove('active');
       }, (index + 1) * 900);
-      // playButtons.addEventListener('mousedown', pressColorButton, false);
-      // playButtons.addEventListener('mouseup', releaseColorButton, false);
-      // playButtons.addEventListener('click', checkMove, false);
-    }, (index + 1) * 200);
+    }, (index + 1) * 250);
   }
 };
 
@@ -123,7 +123,9 @@ const checkMove = function checkMove(e) {
   if ((e.target.id === 'green'
   || e.target.id === 'red'
   || e.target.id === 'yellow'
-  || e.target.id === 'blue') && pattern.length) {
+  || e.target.id === 'blue')
+  && pattern.length
+  && !gamePlayOn) {
     if (e.target.id === pattern[playerMoves.length]) {
       playerMoves.push(e.target.id);
       if (pattern.length === playerMoves.length) {
@@ -154,7 +156,9 @@ const start = function start() {
   resetGame();
   levelUp();
   display(pattern.length);
-  gamePlay();
+  setTimeout(() => {
+    gamePlay();
+  }, 1000);
   console.log('game started');
 };
 
