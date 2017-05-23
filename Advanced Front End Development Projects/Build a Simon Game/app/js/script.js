@@ -2,6 +2,7 @@
 const playButtons = document.querySelector('.game');
 const startButton = document.querySelector('#start-button');
 const strictMode = document.querySelector('#strict-status');
+const strictButton = document.querySelector('#strict-mode-label');
 const onOffToggle = document.querySelector('#toggle-label');
 let gameOn = false;
 let strict = false;
@@ -39,6 +40,15 @@ const display = function display(info) {
   document.querySelector('#display-info').textContent = infoStr;
 };
 
+const strictSwitch = function strictSwitch() {
+  if (strict) {
+    strict = false;
+  } else {
+    strict = true;
+  }
+  console.log(`strict now is ${strict}`);
+};
+
 const pressColorButton = function pressColorButton(e) {
   if (e.target !== e.currentTarget) {
     const buttonId = e.target.id;
@@ -64,6 +74,7 @@ const turnOnGame = function turnOnGame() {
     playButtons.addEventListener('mouseup', releaseColorButton, false);
     playButtons.addEventListener('click', checkMove, false);
     startButton.addEventListener('click', start, false);
+    strictButton.addEventListener('click', strictSwitch, true);
     document.querySelectorAll('.play-button').forEach(button => button.classList.add('available'));
     strictMode.classList.add('available');
     display('--');
@@ -71,9 +82,11 @@ const turnOnGame = function turnOnGame() {
     playButtons.removeEventListener('mousedown', pressColorButton, false);
     playButtons.removeEventListener('click', checkMove, false);
     startButton.removeEventListener('click', start, false);
+    strictButton.removeEventListener('click', strictSwitch, true);
     document.querySelectorAll('.play-button').forEach(button => button.classList.remove('available'));
     strictMode.classList.remove('available');
     display('');
+    strict = false;
   }
   console.log(`game switch is ${gameOn}`);
 };
@@ -115,10 +128,9 @@ const checkMove = function checkMove(e) {
         }, 1200);
       }
     } else {
-      // function display error
       display('NO');
       setTimeout(() => {
-        gamePlay();
+        (strict) ? start() : gamePlay();
       }, 1200);
     }
   }
