@@ -40,14 +40,17 @@
 #start-button {
     width: 1.5em;
     height: 1.5em;
-    background-color: coral;
+    background-color: #c9633e;
     border: 1px solid black;
     border-radius: 50%;
-    position: relative;
+    box-shadow: 0 0 8px black;
+    &:active {
+        box-shadow: 0 0 4px black;
+        box-shadow: inset 0 0 4px black;
+    }
 }
 
 #strict-button {
-    position: relative;
     display: flex;
     flex-direction: column-reverse; 
     align-items: center;
@@ -72,9 +75,14 @@
     height: 1.5em;
     margin-top: 0.2em;
     margin-bottom: 0.8em;
-    background-color: yellow;
+    background-color: #d8d815;
     border: 1px solid black;
     border-radius: 50%;
+    box-shadow: 0 0 8px black;
+    &:active {
+        box-shadow: 0 0 4px black;
+        box-shadow: inset 0 0 4px black;
+    }
 }
 
 #strict-mode:checked ~ #strict-status.available {
