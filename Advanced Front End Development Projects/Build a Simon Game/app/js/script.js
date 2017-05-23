@@ -71,7 +71,9 @@ const turnOnGame = function turnOnGame() {
   gameOn = (gameOn) ? false : true;
   if (gameOn) {
     playButtons.addEventListener('mousedown', pressColorButton, false);
+    playButtons.addEventListener('touchstart', pressColorButton, false);
     playButtons.addEventListener('mouseup', releaseColorButton, false);
+    playButtons.addEventListener('touchend', releaseColorButton, false);
     playButtons.addEventListener('click', checkMove, false);
     startButton.addEventListener('click', start, false);
     strictButton.addEventListener('click', strictSwitch, true);
@@ -80,13 +82,16 @@ const turnOnGame = function turnOnGame() {
     display('--');
   } else {
     playButtons.removeEventListener('mousedown', pressColorButton, false);
+    playButtons.removeEventListener('mouseup', pressColorButton, false);
+    playButtons.removeEventListener('touchstart', pressColorButton, false);
+    playButtons.removeEventListener('touchend', pressColorButton, false);
     playButtons.removeEventListener('click', checkMove, false);
     startButton.removeEventListener('click', start, false);
     strictButton.removeEventListener('click', strictSwitch, true);
     document.querySelectorAll('.play-button').forEach(button => button.classList.remove('available'));
     strictMode.classList.remove('available');
     display('');
-    strict = false;
+    resetGame();
   }
   console.log(`game switch is ${gameOn}`);
 };
