@@ -15,20 +15,15 @@
 }
 
 #game-controls {
-    // font-size: 0.5em;
-    // background-color: cyan;
-    // width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
 #display {
-    width: 3em;
+    width: 2.6em;
     height: 2em;
-    // margin-left: 0.7em;
-    // display: inline-block;
-    background-color: darkslategray;
+    background-color: #07002d;
     border-radius: 7px;
     display: flex;
     justify-content: center;
@@ -44,7 +39,9 @@
 }
 
 #display-info {
-    color: red;
+    font: 1.8em 'VT323', monospace;
+    color: #c10000;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
 }
 
 #start-button {
@@ -103,8 +100,6 @@
     background-color: red;
     box-shadow: 0 0 5px red;
 }
-
-
 
 #on-off {
     margin: 1.5em auto 0;
