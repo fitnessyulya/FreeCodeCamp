@@ -4,7 +4,7 @@
 
 ### Build a Random Quote Machine
 
-(click the image for demo)
+(click the image for demo) [^1]
 
 [![A Random Quote Machine](https://github.com/gatezh/FreeCodeCamp/blob/master/images/A%20Random%20Quote%20Machine%20970x500.png?raw=true)](https://codepen.io/gatezh/full/yaqBzE/)
 
@@ -51,3 +51,12 @@
 (click the image for demo)
 
 [![A Tic Tac Toe Game](https://github.com/gatezh/FreeCodeCamp/blob/master/images/A%20Tic%20Tac%20Toe%20Game%20970x500.png?raw=true)](https://codepen.io/gatezh/full/MmERVQ)
+
+
+### Build a Simon Game
+
+(click the image for demo)
+
+[![A Simon Game](https://github.com/gatezh/FreeCodeCamp/blob/master/images/A%20Simon%20Game%20970x500.png?raw=true)](https://codepen.io/gatezh/full/EmrxjY)
+
+[^1]: Please, use Google Chrome to avoid ES6 and other incompatibilities.
