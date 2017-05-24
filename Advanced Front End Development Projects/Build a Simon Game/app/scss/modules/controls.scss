@@ -6,6 +6,7 @@
     border-radius: 50%;
     text-align: center;
     border: $dbl-border solid black;
+    z-index: 100;
 }
 
 #controls > p {
